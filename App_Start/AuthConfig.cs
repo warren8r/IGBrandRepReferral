@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Membership.OpenAuth;
 
-namespace FortechDemos
+namespace IGBrandRepReferral
 {
     internal static class AuthConfig
     {

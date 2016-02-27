@@ -136,7 +136,6 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="AttachmentModal.aspx" />
-    <Content Include="CloseJobs.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -275,7 +274,6 @@
     <Content Include="IGBrandRepReferral.Master" />
     <Content Include="css\mdm.less" />
     <Content Include="css\mdm2.less" />
-    <Content Include="RigTrack.master" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -304,7 +302,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="RequestDemo.aspx" />
+    <Content Include="FeatureRequest.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Styles\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -328,7 +326,7 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Code\FortechDemosDO.cs" />
+    <Compile Include="App_Code\IGBrandRepReferralDO.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -380,10 +378,6 @@
     <Compile Include="AttachmentModal.aspx.designer.cs">
       <DependentUpon>AttachmentModal.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CloseJobs.aspx.cs">
-      <DependentUpon>CloseJobs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -391,12 +385,12 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RequestDemo.aspx.cs">
-      <DependentUpon>RequestDemo.aspx</DependentUpon>
+    <Compile Include="FeatureRequest.aspx.cs">
+      <DependentUpon>FeatureRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RequestDemo.aspx.designer.cs">
-      <DependentUpon>RequestDemo.aspx</DependentUpon>
+    <Compile Include="FeatureRequest.aspx.designer.cs">
+      <DependentUpon>FeatureRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="IGBrandRepReferral.Master.cs">
       <DependentUpon>IGBrandRepReferral.Master</DependentUpon>
@@ -409,17 +403,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RigTrack.master.cs">
-      <DependentUpon>RigTrack.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Master.designer.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
     <Compile Include="ViewRequests.aspx.cs">
       <DependentUpon>ViewRequests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -433,7 +416,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
-    <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">

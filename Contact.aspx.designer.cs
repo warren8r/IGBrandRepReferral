@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FortechDemos
-{
-    public partial class Contact
-    {
+namespace IGBrandRepReferral {
+    
+    
+    public partial class Contact {
     }
 }

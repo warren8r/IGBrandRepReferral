@@ -1,36 +1,15 @@
-﻿<%@ Page Title="Request Demo" Language="C#" MasterPageFile="~/IGBrandRepReferral.Master" AutoEventWireup="true" CodeBehind="RequestDemo.aspx.cs" Inherits="IGBrandRepReferral.RequestDemo" EnableEventValidation="false" %>
+﻿<%@ Page Title="Feature Request" Language="C#" MasterPageFile="~/IGBrandRepReferral.Master" AutoEventWireup="true" CodeBehind="FeatureRequest.aspx.cs" Inherits="IGBrandRepReferral.FeatureRequest" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"></asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="customCss" runat="server"></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <telerik:RadCodeBlock ID="RadCodeBlock2" runat="server">
     <script type="text/javascript">
-        //try {
-        //    alert("here1");
-        //    var divLImage = document.getElementById("div1")
-        //    if (divLImage != null && typeof (divLImage) != 'undefined') {
-        //        alert("here3");
-        //        divLImage.style.display = "none";
-        //        divLImage.parentNode.removeChild(divLoadingMessage);
-        //    }
-        //    alert("here4");
-
-        //}
-        //catch (e) {
-        //}
-
         function IsValidEmail(sender, eventArgs) {
             var email = eventArgs.get_newValue();
-            if (email.indexOf("@aol") > -1 || email.indexOf("@gmail") > -1 || email.indexOf("@hotmail") > -1 || email.indexOf("@yahoo") > -1) {
-                var id = '<%=lblMessage.ClientID%>';
-                var lblMessage2 = document.getElementById(id);
-                lblMessage2.style.display = 'inherit';
-            }
-            else {
-                var id = '<%=lblMessage.ClientID%>';
-                var lblMessage2 = document.getElementById(id);
-                lblMessage2.style.display = 'none';
-            }
+            var id = '<%=lblMessage.ClientID%>';
+            var lblMessage2 = document.getElementById(id);
+            lblMessage2.style.display = 'none';
         }
 
         function OnClickValidate() {
@@ -65,13 +44,7 @@
             var textbox = $find('<%= txtEmail.ClientID %>');
             var email = textbox.get_textBoxValue();
             if (Page_ClientValidate()) {
-                if (email.indexOf("@aol") > -1 || email.indexOf("@gmail") > -1 || email.indexOf("@hotmail") > -1 || email.indexOf("@yahoo") > -1) {
-                    ErrorDialog("Please use a valid company email");
-                    return false;
-                }
-                else {
                     return true;
-                }
             }
             else {
                 return false;
@@ -152,19 +125,11 @@
                         buttons:
                         {
                             'OK': function () {
-                                // $(this).dialog("close");
                                 $("#confirmDialog").dialog("close");
-
-                                // _DialogConfirmed(); // MUST implement on local page
                             }
                         }
-
                     });
-
             });
-            //Dialog('Error', content);
-
-
         }
         function OnClientShow(sender, args) {
             var btn = sender.getManualCloseButton();
@@ -240,7 +205,7 @@
                     <asp:Table ID="MainPage" runat="server" HorizontalAlign="Center" Width="100%">
                         <asp:TableRow>
                             <asp:TableCell HorizontalAlign="Center">
-                                <h2>Request Demo</h2>
+                                <h2>Feature Request</h2>
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
@@ -268,7 +233,7 @@
                                             <telerik:RadToolTip ID="RadToolTip4" runat="server" Position="MiddleRight" RelativeTo="Element"
                                                 TargetControlID="PeriodToolTip" Width="200px" HideEvent="ManualClose"
                                                 OnClientShow="OnClientShow">
-                                                Must be a valid company e-mail. Addresses such as yahoo, gmail, hotmail, etc will not be accepted.
+                                                Must be a valid e-mail address.
                                             </telerik:RadToolTip>
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
@@ -311,7 +276,7 @@
                                             <telerik:RadTextBox ID="txtPositionTitle" runat="server"></telerik:RadTextBox>
                                         </asp:TableCell>
                                         <asp:TableCell>
-                                            <telerik:RadDropDownList ID="cbDemos" runat="server" DefaultMessage="--Select--" AppendDataBoundItems="true" CausesValidation="false"></telerik:RadDropDownList>
+                                            <telerik:RadDropDownList ID="cbDemos" runat="server" DefaultMessage="--Select--" AppendDataBoundItems="true" Enabled="true" CausesValidation="false"></telerik:RadDropDownList>
                                         </asp:TableCell>
                                     </asp:TableRow>
                                     <asp:TableRow>
@@ -364,11 +329,6 @@
                                             Upload File
                                         </asp:TableHeaderCell>
                                     </asp:TableRow>
-    <%--                                <asp:TableRow>
-                                        <asp:TableCell ColumnSpan="2">
-                                            <asp:FileUpload ID="FileUploadControl" runat="server" AllowMultiple="true"></asp:FileUpload>
-                                        </asp:TableCell>
-                                    </asp:TableRow>--%>
                                     <asp:TableRow>
                                         <asp:TableCell ColumnSpan="2">
                                             <telerik:RadAsyncUpload RenderMode="Lightweight" TemporaryFolder="~/App_Data/RadUploadTemp" runat="server" ID="AttachmentUpload" MultipleFileSelection="Automatic" Width="235px" />
@@ -384,7 +344,8 @@
                                             <asp:Button ID="btnSave" runat="server" Text="Submit Request" OnClientClick="return OnClickValidate()" OnClick="btnSave_Click"/>
                                         </asp:TableCell>
                                         <asp:TableCell>
-                                            <telerik:RadButton ID="btnCancel" runat="server" Text="Clear" OnClick="btnCancel_Click" CausesValidation="false"></telerik:RadButton>
+<%--                                            <telerik:RadButton ID="btnCancel" runat="server" Text="Clear" OnClick="btnCancel_Click" CausesValidation="false"></telerik:RadButton>--%>
+                                            <asp:Button ID="btnClear" runat="server" Text="Clear" OnClientClick="return Validator.resetForm()" OnClick="btnClear_Click" CausesValidation="false"></asp:Button>
                                         </asp:TableCell>
                                         <asp:TableCell Width="50%"></asp:TableCell>
                                     </asp:TableRow>
@@ -396,7 +357,7 @@
                                 <asp:Table runat="server" Width="100%" HorizontalAlign="Center">
                                     <asp:TableRow>
                                         <asp:TableCell Width="25%" HorizontalAlign="Center">
-                                            <asp:Label ID="lblRequirements" runat="server" Text="To receive password, you must enter valid data for above fields including valid company email (gmail, yahoo, hotmail, aol will not be accepted)" ForeColor="Red"></asp:Label>
+                                            <asp:Label ID="lblRequirements" runat="server" Text="Kindly enter valid data for above fields including valid PayPal email" ForeColor="Turquoise"></asp:Label>
                                         </asp:TableCell>
                                     </asp:TableRow>
                                 </asp:Table>

@@ -10,7 +10,7 @@
 namespace IGBrandRepReferral {
     
     
-    public partial class RequestDemo {
+    public partial class FeatureRequest {
         
         /// <summary>
         /// RadCodeBlock2 control.
@@ -319,13 +319,13 @@ namespace IGBrandRepReferral {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnCancel control.
+        /// btnClear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnCancel;
+        protected global::System.Web.UI.WebControls.Button btnClear;
         
         /// <summary>
         /// RegularExpressionValidator1 control.

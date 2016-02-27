@@ -15,55 +15,49 @@ using Telerik.Web.UI;
 
 namespace IGBrandRepReferral
 {
-    public partial class RequestDemo : Page
+    public partial class FeatureRequest : Page
     {
+        #region Global Variables
         bool invalid = false;
+        #endregion
 
+        #region Page Behavior
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                DataTable dt = App_Code.FortechDemosDO.GetAllDemos();
+                DataTable dt = App_Code.IGBrandRepReferralDO.GetAllDemos();
                 cbDemos.DataTextField = "DemoName";
                 cbDemos.DataValueField = "ID";
                 cbDemos.DataSource = dt;
                 cbDemos.DataBind();
 
-                DataTable dtCountry = App_Code.FortechDemosDO.GetAllCountries();
+                DataTable dtCountry = App_Code.IGBrandRepReferralDO.GetAllCountries();
                 ddlCountry.DataTextField = "Name";
                 ddlCountry.DataValueField = "ID";
                 ddlCountry.DataSource = dtCountry;
                 ddlCountry.DataBind();
 
-                DataTable dtState = App_Code.FortechDemosDO.GetAllStates();
+                DataTable dtState = App_Code.IGBrandRepReferralDO.GetAllStates();
                 ddlState.DataTextField = "Name";
                 ddlState.DataValueField = "ID";
                 ddlState.DataSource = dtState;
                 ddlState.DataBind();
                 ddlState.Enabled = false;
+
+                cbDemos.SelectedValue = "1220";
             }
-            //else
-            //{
-            //    Response.Buffer = false;
-            //    Response.Write("<div class='modal'><div class='center'><img alt='' src='/Images/ripple.gif' /></div></div>");
-            //    Response.Flush();
-
-            //}
         }
+        #endregion
 
-        protected void btnCancel_Click(object sender, EventArgs e)
+        #region Buttons
+        protected void btnClear_Click(object sender, EventArgs e)
         {
             ClearFields();
         }
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             bool validEmail = IsValidEmail(txtEmail.Text);
-
-            if(txtEmail.Text.Contains("@gmail.com") || txtEmail.Text.Contains("@hotmail.com") || txtEmail.Text.Contains("@yahoo.com") || txtEmail.Text.Contains("@aol.com"))
-            {
-                validEmail = false;
-            }
 
             if (Validation() && !validEmail)
             {
@@ -92,64 +86,9 @@ namespace IGBrandRepReferral
                     Int32.TryParse(ddlState.SelectedValue, out stateID);
                     string zipCode = txtZipCode.Text;
                     bool IsAttachment = false;
-                    int requestID = App_Code.FortechDemosDO.InsertRequest(firstName, lastName, phone, email, companyName, companyURL, position, address1, address2, countryID, city, stateID, zipCode);
+                    int requestID = App_Code.IGBrandRepReferralDO.InsertRequest(firstName, lastName, phone, email, companyName, companyURL, position, address1, address2, countryID, city, stateID, zipCode);
 
-                    App_Code.FortechDemosDO.InsertRequestDemoLookup(requestID, Int32.Parse(cbDemos.SelectedValue));
-
-                    //FileUpload
-                    //if (FileUploadControl.HasFile || FileUploadControl.HasFiles)
-                    //{
-                    //    foreach (HttpPostedFile file in FileUploadControl.PostedFiles)
-                    //    {
-                    //        //string fileName = Path.GetFileName(FileUploadControl.FileName);
-                    //        //byte[] fileBytes = FileUploadControl.FileBytes;
-                    //        //string extension = FileUploadControl.FileName.Substring(FileUploadControl.FileName.LastIndexOf(".") + 1);
-                    //        //string fileType = null;
-
-                    //        string fileName = Path.GetFileName(file.FileName);
-                    //        byte[] fileBytes = null;
-                    //        using(var binaryReader = new BinaryReader(file.InputStream))
-                    //        {
-                    //            fileBytes = binaryReader.ReadBytes(file.ContentLength);
-                    //        }
-                    //        string extension = FileUploadControl.FileName.Substring(file.FileName.LastIndexOf(".") + 1);
-                    //        string fileType = null;
-
-                    //        switch (extension)
-                    //        {
-                    //            case "doc":
-                    //                fileType = "application/vnd.ms-word";
-                    //                break;
-                    //            case "docx":
-                    //                fileType = "application/vnd.ms-word";
-                    //                break;
-                    //            case "xls":
-                    //                fileType = "application/vnd.ms-excel";
-                    //                break;
-                    //            case "xlsx":
-                    //                fileType = "application/vnd.ms-excel";
-                    //                break;
-                    //            case "jpg":
-                    //                fileType = "image/jpg";
-                    //                break;
-                    //            case "png":
-                    //                fileType = "image/png";
-                    //                break;
-                    //            case "gif":
-                    //                fileType = "image/gif";
-                    //                break;
-                    //            case "pdf":
-                    //                fileType = "application/pdf";
-                    //                break;
-                    //            case "txt":
-                    //                fileType = "Text Document";
-                    //                break;
-                    //        }
-
-                    //        //Store into database
-                    //        int fileID = App_Code.FortechDemosDO.UploadFile(fileName, fileBytes, extension, requestID);
-                    //    }
-                    //}
+                    App_Code.IGBrandRepReferralDO.InsertRequestDemoLookup(requestID, Int32.Parse(cbDemos.SelectedValue));
 
                     if (AttachmentUpload.UploadedFiles.Count > 0)
                     {
@@ -191,7 +130,7 @@ namespace IGBrandRepReferral
                                     FileType = "application/pdf";
                                     break;
                             }
-                            int fileID = App_Code.FortechDemosDO.UploadFile(Filename1, FileBytes, FileType, requestID);
+                            int fileID = App_Code.IGBrandRepReferralDO.UploadFile(Filename1, FileBytes, FileType, requestID);
                         }
                     }
 
@@ -200,7 +139,7 @@ namespace IGBrandRepReferral
                     //{
                     //    if (item.Checked)
                     //    {
-                    //        App_Code.FortechDemosDO.InsertRequestDemoLookup(requestID, Int32.Parse(item.Value));
+                    //        App_Code.IGBrandRepReferralDO.InsertRequestDemoLookup(requestID, Int32.Parse(item.Value));
                     //        demosRequested += item.Text + ", ";
                     //    }
                     //}
@@ -249,7 +188,9 @@ namespace IGBrandRepReferral
                 //lblMessage.Visible = true;
             }
         }
+        #endregion
 
+        #region Utility Methods
         protected void ClearFields()
         {
             txtFirstName.Text = "";
@@ -269,7 +210,6 @@ namespace IGBrandRepReferral
             txtZipCode.Text = "";
             lblStateError.Visible = false;
         }
-
         protected bool Validation()
         {
             if (txtFirstName.Text == "" || txtLastName.Text == "" || txtPhoneNumber.Text == "" || txtEmail.Text == ""
@@ -282,7 +222,6 @@ namespace IGBrandRepReferral
                 return true;
             }
         }
-
         public bool IsValidEmail(string strIn)
         {
             invalid = false;
@@ -316,7 +255,6 @@ namespace IGBrandRepReferral
                 return false;
             }
         }
-
         private string DomainMapper(Match match)
         {
             // IdnMapping class with default property values.
@@ -333,8 +271,6 @@ namespace IGBrandRepReferral
             }
             return match.Groups[1].Value + domainName;
         }
-
-        //protected static string BuildEmail(string EmailAddress, string UserName, string Subject, string Body)
         protected static string BuildEmail(string firstName, string lastName, string phone, string email, string companyName, string companyURL, string position, string demos)
         {
             System.Text.RegularExpressions.Regex oReg = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z])?[a-zA-Z]*)*\s+<(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})>$|^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,4})$");
@@ -426,7 +362,6 @@ namespace IGBrandRepReferral
             }
             return oStr.ToString();
         }
-
         protected Boolean SendEmailViaNetMail(string ToEmail, string Subject, string MsgBody, Boolean bHtml)
         {
             string SendMethod = "Net.Mail";
@@ -463,32 +398,6 @@ namespace IGBrandRepReferral
 
             return bRetVal;
         }
-
-        //protected void ddlCountry_SelectedIndexChanged(object sender, DropDownListEventArgs e)
-        //{
-        //    if (ddlCountry.SelectedValue == "1220")
-        //    {
-        //        ddlState.Enabled = true;
-        //        rfState.Enabled = true;
-        //        lblStateError.Visible = true;
-        //    }
-        //    else
-        //    {
-        //        ddlState.Enabled = false;
-        //        ddlState.SelectedIndex = -1;
-        //        rfState.Enabled = false;
-        //        lblStateError.Visible = false;
-        //    }
-
-        //    if (ddlCountry.SelectedIndex == -1)
-        //    {
-        //        rfCountry.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        rfCountry.Enabled = false;
-        //    }
-        //}
-
+        #endregion
     }
 }

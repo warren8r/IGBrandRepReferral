@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Membership.OpenAuth;
 
-namespace FortechDemos.Account
+namespace IGBrandRepReferral.Account
 {
     public partial class Register : Page
     {

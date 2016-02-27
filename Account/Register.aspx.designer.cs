@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FortechDemos.Account
-{
-
-
-    public partial class Register
-    {
-
+namespace IGBrandRepReferral.Account {
+    
+    
+    public partial class Register {
+        
         /// <summary>
         /// RegisterUser control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace FortechDemos.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CreateUserWizard RegisterUser;
-
+        
         /// <summary>
         /// RegisterUserWizardStep control.
         /// </summary>

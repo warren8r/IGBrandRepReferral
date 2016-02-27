@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FortechDemos.Account
+namespace IGBrandRepReferral.Account
 {
 
 

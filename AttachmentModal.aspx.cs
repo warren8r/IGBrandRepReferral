@@ -19,7 +19,7 @@ namespace IGBrandRepReferral
         protected void RadGrid1_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
             int requestID = Int32.Parse(ViewState["RequestID"].ToString());
-            DataTable dt = App_Code.FortechDemosDO.RequestFileInfo(requestID);
+            DataTable dt = App_Code.IGBrandRepReferralDO.RequestFileInfo(requestID);
             RadGrid1.DataSource = dt;
         }
 
@@ -30,7 +30,7 @@ namespace IGBrandRepReferral
 
             string ID = item.GetDataKeyValue("ID").ToString();
 
-            DataTable dt = App_Code.FortechDemosDO.DownloadFileBinary(Int32.Parse(ID));
+            DataTable dt = App_Code.IGBrandRepReferralDO.DownloadFileBinary(Int32.Parse(ID));
 
             string fileName = dt.Rows[0]["FileName"].ToString();
             byte[] bytes = (byte[])dt.Rows[0]["FileSource"];

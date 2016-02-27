@@ -15,7 +15,7 @@ namespace IGBrandRepReferral
         {
             if (!IsPostBack)
             {
-                DataTable dt = App_Code.FortechDemosDO.GetAllDemos();
+                DataTable dt = App_Code.IGBrandRepReferralDO.GetAllDemos();
                 ddlDemo.DataTextField = "DemoName";
                 ddlDemo.DataValueField = "ID";
                 ddlDemo.DataSource = dt;
@@ -41,7 +41,7 @@ namespace IGBrandRepReferral
             string lastName = txtLastName.Text;
             string companyName = txtCompany.Text;
             int demoID = Int32.Parse(ddlDemo.SelectedValue);
-            dt = App_Code.FortechDemosDO.SearchRequests(firstName, lastName, companyName, demoID);
+            dt = App_Code.IGBrandRepReferralDO.SearchRequests(firstName, lastName, companyName, demoID);
             return dt;
         }
 
@@ -71,7 +71,7 @@ namespace IGBrandRepReferral
             string script = "function f(){$find(\"" + RadWindow1.ClientID + "\").show(); Sys.Application.remove_load(f);}Sys.Application.add_load(f);";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key", script, true);
 
-            //DataTable dt = App_Code.FortechDemosDO.DownloadFileBinary(Int32.Parse(requestID));
+            //DataTable dt = App_Code.IGBrandRepReferralDO.DownloadFileBinary(Int32.Parse(requestID));
 
             //string fileName = dt.Rows[0]["FileName"].ToString();
             //byte[] bytes = (byte[])dt.Rows[0]["FileSource"];

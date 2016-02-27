@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
-using FortechDemos;
+using IGBrandRepReferral;
 
-namespace FortechDemos
+namespace IGBrandRepReferral
 {
     public class Global : HttpApplication
     {

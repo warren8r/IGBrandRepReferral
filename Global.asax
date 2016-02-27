@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="FortechDemos.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="IGBrandRepReferral.Global" Language="C#" %>

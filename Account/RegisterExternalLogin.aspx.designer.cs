@@ -7,15 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FortechDemos.Account
-{
-
-
-    public partial class RegisterExternalLogin
-    {
-
-
-
+namespace IGBrandRepReferral.Account {
+    
+    
+    public partial class RegisterExternalLogin {
+        
         /// <summary>
         /// userNameForm control.
         /// </summary>
@@ -24,7 +20,7 @@ namespace FortechDemos.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder userNameForm;
-
+        
         /// <summary>
         /// userName control.
         /// </summary>
@@ -33,7 +29,5 @@ namespace FortechDemos.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox userName;
-
-
     }
 }

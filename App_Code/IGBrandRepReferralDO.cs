@@ -7,7 +7,7 @@ using System.Web;
 
 namespace IGBrandRepReferral.App_Code
 {
-    public class FortechDemosDO
+    public class IGBrandRepReferralDO
     {
         public static DataTable GetAllDemos()
         {

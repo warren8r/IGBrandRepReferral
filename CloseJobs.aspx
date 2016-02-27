@@ -13,7 +13,7 @@
         <telerik:RadWindow ID="RadWindow1" runat="server" Behaviors="Close">
         </telerik:RadWindow>
 
-        <%-- // Jd New CSS Loading Animation--%>
+        <%-- // Jd New CSS Loading Animation --%>
         <asp:UpdateProgress ID="loader" runat="server" DisplayAfter="0">
             <ProgressTemplate>
 

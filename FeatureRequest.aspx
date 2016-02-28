@@ -16,6 +16,8 @@
             var phone = ValidatePhone();
             var email = ValidateEmail();
             if (phone && email) {
+                var updateProgress = $get("<%= loader.ClientID %>");
+                updateProgress.style.display = "block";
                 return true;
             }
             else {
@@ -192,6 +194,14 @@
 
             return true;
         }
+
+        function ClearState() {
+            var myVal = document.getElementById('<%=rfState.ClientID%>');
+            ValidatorEnable(myVal, false);
+
+            return true;
+        }
+
     </script>
     <link href="/Styles/jquery-ui.min.css" rel="stylesheet" />
 
@@ -241,7 +251,7 @@
     </style>
     </telerik:RadCodeBlock>
 
-<%--        <asp:UpdateProgress ID="loader" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+        <asp:UpdateProgress ID="loader" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
             <div id="div1" class="modal" visible="false">
                 <div class="center">
@@ -249,7 +259,7 @@
                 </div>
             </div>
         </ProgressTemplate>
-        </asp:UpdateProgress>--%>
+        </asp:UpdateProgress>
 
         <telerik:RadNotification ID="radnotMessage" runat="server" Text="Initial text" Position="BottomRight"
             AutoCloseDelay="3000" ShowCloseButton="false" Animation="Fade" Width="350" Title="Current time"
@@ -388,20 +398,30 @@
                                     </asp:TableRow>
                                     <asp:TableRow>
                                         <asp:TableCell ColumnSpan="2">
-                                            <telerik:RadAsyncUpload RenderMode="Lightweight" TemporaryFolder="~/App_Data/RadUploadTemp" runat="server" ID="AttachmentUpload" MultipleFileSelection="Automatic" Width="235px" />
+                                            <telerik:RadAsyncUpload RenderMode="Lightweight" TemporaryFolder="~/App_Data/RadUploadTemp" runat="server" ID="AttachmentUpload" MultipleFileSelection="Automatic" Width="100%" />
                                             <telerik:RadProgressArea RenderMode="Lightweight" runat="server" ID="RadProgressArea1"  />
                                         </asp:TableCell>
+
+ <%--                                       Reps Name
+Parent Name
+email
+instagram handle
+reps age
+reps birthday
+pay pal email
+How did you hear about us?
+Reps bio and rep resume -Please insure shop names are spelled correctly and include @--%>
+
+
                                     </asp:TableRow>
                                 </asp:Table>
                                 <asp:Table ID="Table3" runat="server" Width="100%" HorizontalAlign="Center">
                                     <asp:TableRow>
                                         <asp:TableCell Width="49%"></asp:TableCell>
                                         <asp:TableCell>
-                                            <%--<telerik:RadButton ID="btnSave" runat="server" Text="Submit Request" OnClick="btnSave_Click"></telerik:RadButton>--%>
                                             <asp:Button ID="btnSave" runat="server" Text="Submit Request" OnClientClick="return OnClickValidate()" OnClick="btnSave_Click"/>
                                         </asp:TableCell>
                                         <asp:TableCell>
-<%--                                            <telerik:RadButton ID="btnCancel" runat="server" Text="Clear" OnClick="btnCancel_Click" CausesValidation="false"></telerik:RadButton>--%>
                                             <asp:Button ID="btnClear" runat="server" Text="Clear" OnClientClick="return Clear()" OnClick="btnClear_Click" CausesValidation="false"></asp:Button>
                                         </asp:TableCell>
                                         <asp:TableCell Width="50%"></asp:TableCell>

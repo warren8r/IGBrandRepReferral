@@ -44,8 +44,6 @@ namespace IGBrandRepReferral
                 ddlState.DataSource = dtState;
                 ddlState.DataBind();
                 ddlState.Enabled = false;
-
-                cbDemos.SelectedValue = "1220";
             }
         }
         #endregion

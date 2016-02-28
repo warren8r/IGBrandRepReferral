@@ -44,7 +44,7 @@
             var textbox = $find('<%= txtEmail.ClientID %>');
             var email = textbox.get_textBoxValue();
             if (Page_ClientValidate()) {
-                    return true;
+                return true;
             }
             else {
                 return false;
@@ -70,7 +70,11 @@
                 ValidatorEnable(document.getElementById('<%= rfState.ClientID %>'), false);
             }
         }
-
+        function ManuallyDisableStateValidation() {
+            alert("Before");
+            document.getElementById('ddlState').style.border = '1px solid #333';
+            alert("AFter");
+        }
         function ValidatorUpdateDisplay(val) {
             if (typeof (val.display) == "string") {
                 if (val.display == "None") {
@@ -134,6 +138,59 @@
         function OnClientShow(sender, args) {
             var btn = sender.getManualCloseButton();
             btn.style.left = "0px";
+        }
+
+        function Clear() {
+            var myVal = document.getElementById('<%=RequiredFieldValidator1.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtFirstName.ClientID%>').value = "";
+
+            myVal = document.getElementById('<%=RequiredFieldValidator2.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtLastName.ClientID%>').value = "";
+
+            myVal = document.getElementById('<%=RequiredFieldValidator3.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtPhoneNumber.ClientID%>').value = "";
+
+            myVal = document.getElementById('<%=RequiredFieldValidator4.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtEmail.ClientID%>').value = "";
+
+            myVal = document.getElementById('<%=RequiredFieldValidator5.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtCompanyName.ClientID%>').value = "";
+
+            myVal = document.getElementById('<%=RequiredFieldValidator6.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtCompanyURL.ClientID%>').value = "";
+
+            myVal = document.getElementById('<%=RequiredFieldValidator7.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtPositionTitle.ClientID%>').value = "";
+
+            myVal = document.getElementById('<%=RequiredFieldValidator8.ClientID%>');
+            ValidatorEnable(myVal, false);
+
+            myVal = document.getElementById('<%=RequiredFieldValidator9.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtAddress1.ClientID%>').value = "";
+
+            myVal = document.getElementById('<%=rfCountry.ClientID%>');
+            ValidatorEnable(myVal, false);
+
+            myVal = document.getElementById('<%=RequiredFieldValidator10.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtCity.ClientID%>').value = "";
+
+            myVal = document.getElementById('<%=rfState.ClientID%>');
+            ValidatorEnable(myVal, false);
+
+            myVal = document.getElementById('<%=RequiredFieldValidator11.ClientID%>');
+            ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtZipCode.ClientID%>').value = "";
+
+            return true;
         }
     </script>
     <link href="/Styles/jquery-ui.min.css" rel="stylesheet" />
@@ -200,7 +257,7 @@
         </telerik:RadNotification>
 
         <fieldset>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
                 <ContentTemplate>
                     <asp:Table ID="MainPage" runat="server" HorizontalAlign="Center" Width="100%">
                         <asp:TableRow>
@@ -209,26 +266,26 @@
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
-                    <asp:Table runat="server" HorizontalAlign="Center">
+                    <asp:Table ID="Table1" runat="server" HorizontalAlign="Center">
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:Table runat="server" HorizontalAlign="Center">
+                                <asp:Table ID="Table2" runat="server" HorizontalAlign="Center">
                                     <asp:TableRow>
                                         <asp:TableHeaderCell>
                                             First Name<font color="red">*</font>
-                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtFirstName" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             Last Name<font color="red">*</font>
-                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtLastName" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             Phone Number<font color="red">*</font>
-                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPhoneNumber" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPhoneNumber" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             E-Mail<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmail" ForeColor="Red" Display="Static"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEmail" ForeColor="Red" Display="Static"></asp:RequiredFieldValidator>
                                             <asp:ImageButton ID="PeriodToolTip" runat="server" OnClientClick="return false;" Width="18px" ImageUrl="~/images/info_small.png" />
                                             <telerik:RadToolTip ID="RadToolTip4" runat="server" Position="MiddleRight" RelativeTo="Element"
                                                 TargetControlID="PeriodToolTip" Width="200px" HideEvent="ManualClose"
@@ -238,19 +295,19 @@
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             Company Name<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCompanyName" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtCompanyName" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             Company URL<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCompanyURL" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtCompanyURL" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             Position/Title<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPositionTitle" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtPositionTitle" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             Select Demos<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="cbDemos" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="cbDemos" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                     </asp:TableRow>
                                     <asp:TableRow>
@@ -282,7 +339,7 @@
                                     <asp:TableRow>
                                         <asp:TableHeaderCell ColumnSpan="2">
                                             Address Line 1<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtAddress1" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtAddress1" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell ColumnSpan="2">
                                             Address Line 2 (Optional)
@@ -293,7 +350,7 @@
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             City<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtCity" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtCity" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             State<asp:Label ID="lblStateError" runat="server" Text="*" ForeColor="Red" style="visibility:hidden;"></asp:Label>
@@ -301,7 +358,7 @@
                                         </asp:TableHeaderCell>
                                         <asp:TableHeaderCell>
                                             Zip Code<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtZipCode" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtZipCode" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
                                     </asp:TableRow>
                                     <asp:TableRow>
@@ -318,7 +375,7 @@
                                             <telerik:RadTextBox ID="txtCity" runat="server" Width="100%"></telerik:RadTextBox>
                                         </asp:TableCell>
                                         <asp:TableCell>
-                                            <telerik:RadDropDownList ID="ddlState" runat="server" AppendDataBoundItems="true" DefaultMessage="--Select--" DropDownHeight="240px" CausesValidation="false"></telerik:RadDropDownList>
+                                            <telerik:RadDropDownList ID="ddlState" runat="server" AppendDataBoundItems="true" DefaultMessage="--Select--" DropDownHeight="240px" CausesValidation="false" OnClientSelectedIndexChanged="EnableDisableState"></telerik:RadDropDownList>
                                         </asp:TableCell>
                                         <asp:TableCell>
                                             <telerik:RadTextBox ID="txtZipCode" runat="server"></telerik:RadTextBox>
@@ -336,7 +393,7 @@
                                         </asp:TableCell>
                                     </asp:TableRow>
                                 </asp:Table>
-                                <asp:Table runat="server" Width="100%" HorizontalAlign="Center">
+                                <asp:Table ID="Table3" runat="server" Width="100%" HorizontalAlign="Center">
                                     <asp:TableRow>
                                         <asp:TableCell Width="49%"></asp:TableCell>
                                         <asp:TableCell>
@@ -345,7 +402,7 @@
                                         </asp:TableCell>
                                         <asp:TableCell>
 <%--                                            <telerik:RadButton ID="btnCancel" runat="server" Text="Clear" OnClick="btnCancel_Click" CausesValidation="false"></telerik:RadButton>--%>
-                                            <asp:Button ID="btnClear" runat="server" Text="Clear" OnClientClick="return Validator.resetForm()" OnClick="btnClear_Click" CausesValidation="false"></asp:Button>
+                                            <asp:Button ID="btnClear" runat="server" Text="Clear" OnClientClick="return Clear()" OnClick="btnClear_Click" CausesValidation="false"></asp:Button>
                                         </asp:TableCell>
                                         <asp:TableCell Width="50%"></asp:TableCell>
                                     </asp:TableRow>
@@ -354,7 +411,7 @@
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter valid e-mail address" ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" ControlToValidate="txtEmail" Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
                                     <asp:label ID="lblMessage" runat="server" Text="Please enter valid company e-mail address" ForeColor="Red" Style="display: none;"></asp:label>
                                 </div>
-                                <asp:Table runat="server" Width="100%" HorizontalAlign="Center">
+                                <asp:Table ID="Table4" runat="server" Width="100%" HorizontalAlign="Center">
                                     <asp:TableRow>
                                         <asp:TableCell Width="25%" HorizontalAlign="Center">
                                             <asp:Label ID="lblRequirements" runat="server" Text="Kindly enter valid data for above fields including valid PayPal email" ForeColor="Turquoise"></asp:Label>

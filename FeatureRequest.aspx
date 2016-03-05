@@ -45,7 +45,11 @@
         }
 
         function OnClickValidate() {
-            Page_ClientValidate();
+            if (Page_ClientValidate()) {
+                var updateProgress = $get("<%= loader.ClientID %>");
+                updateProgress.style.display = "block";
+                return true;
+            }
             //alert('here I am');
             //var email = ValidateEmail();
             //if (email) {

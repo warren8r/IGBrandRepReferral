@@ -404,8 +404,8 @@ namespace IGBrandRepReferral
         {
             string SmtpServer = "smtp.gmail.com";
             int SmtpPortNo = 587;
-            string SmtpUserName = "fortech2015@gmail.com";
-            string SmtpPassword = "fortech$";
+            string SmtpUserName = "igbrandrepreferralmail@gmail.com";
+            string SmtpPassword = "j3nk1ns1";
             string FromEmail = "igbrandrepreferral@gmail.com";
 
             Boolean bRetVal = true;

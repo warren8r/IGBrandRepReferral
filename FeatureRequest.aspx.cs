@@ -26,24 +26,13 @@ namespace IGBrandRepReferral
         {
             if (!IsPostBack)
             {
-                DataTable dt = App_Code.IGBrandRepReferralDO.GetAllDemos();
-                cbDemos.DataTextField = "DemoName";
-                cbDemos.DataValueField = "ID";
-                cbDemos.DataSource = dt;
-                cbDemos.DataBind();
+                DataTable dt = App_Code.IGBrandRepReferralDO.GetAllHowHear();
+                cbHowHear.DataTextField = "HowHearDesc";
+                cbHowHear.DataValueField = "ID";
+                cbHowHear.DataSource = dt;
+                cbHowHear.DataBind();
 
-                DataTable dtCountry = App_Code.IGBrandRepReferralDO.GetAllCountries();
-                ddlCountry.DataTextField = "Name";
-                ddlCountry.DataValueField = "ID";
-                ddlCountry.DataSource = dtCountry;
-                ddlCountry.DataBind();
-
-                DataTable dtState = App_Code.IGBrandRepReferralDO.GetAllStates();
-                ddlState.DataTextField = "Name";
-                ddlState.DataValueField = "ID";
-                ddlState.DataSource = dtState;
-                ddlState.DataBind();
-                ddlState.Enabled = false;
+                dpRepsBirthday.MaxDate = DateTime.Now;
             }
         }
         #endregion
@@ -59,34 +48,29 @@ namespace IGBrandRepReferral
 
             if (Validation() && !validEmail)
             {
-                string script = "ErrorDialog(\" Please use a valid company email \");";
+                string script = "ErrorDialog(\" Please use a valid email \");";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "SaveProgram", script, true);
-                //lblMessage.Text = "Please enter valid company e-mail address";
-                //lblMessage.Visible = true;
             }
             else if (Validation() && validEmail)
             {
                 try
                 {
-                    string firstName = txtFirstName.Text;
-                    string lastName = txtLastName.Text;
-                    string phone = txtPhoneNumber.Text;
-                    string email = txtEmail.Text;
-                    string companyName = txtCompanyName.Text;
-                    string companyURL = txtCompanyURL.Text;
-                    string position = txtPositionTitle.Text;
-                    string demosRequested = cbDemos.SelectedText;
-                    string address1 = txtAddress1.Text;
-                    string address2 = txtAddress2.Text;
-                    int countryID = Int32.Parse(ddlCountry.SelectedValue);
-                    string city = txtCity.Text;
-                    int stateID = 0;
-                    Int32.TryParse(ddlState.SelectedValue, out stateID);
-                    string zipCode = txtZipCode.Text;
+                    int ID = 0;
+                    string RepsName = txtRepsName.Text;
+                    string ParentsName = txtParentsName.Text;
+                    string Email = txtEmail.Text;
+                    string InstagramUsername = txtInstagramUsername.Text;
+                    string RepsBirthday = dpRepsBirthday.SelectedDate.ToString();
+                    string PayPalEmail = txtPayPalEmail.Text;
+                    string RepsBioResume = txtRepsBioResume.Text;
+                    bool HaveSmallShop = chkHaveSmallShop.Checked;
+                    string SmallShopUsername = txtHaveSmallShop.Text;
+                    int HowHear = 1;
+                    Int32.TryParse(cbHowHear.SelectedValue, out HowHear);
+                    string WhatDoYouWant = txtWhatDoYouWant.Text;
                     bool IsAttachment = false;
-                    int requestID = App_Code.IGBrandRepReferralDO.InsertRequest(firstName, lastName, phone, email, companyName, companyURL, position, address1, address2, countryID, city, stateID, zipCode);
 
-                    App_Code.IGBrandRepReferralDO.InsertRequestDemoLookup(requestID, Int32.Parse(cbDemos.SelectedValue));
+                    int requestID = App_Code.IGBrandRepReferralDO.InsertUpdateFeatureRequest(ID, RepsName, ParentsName, Email, InstagramUsername, RepsBirthday, PayPalEmail, RepsBioResume, HaveSmallShop, SmallShopUsername, HowHear, WhatDoYouWant);
 
                     if (AttachmentUpload.UploadedFiles.Count > 0)
                     {
@@ -131,49 +115,29 @@ namespace IGBrandRepReferral
                             int fileID = App_Code.IGBrandRepReferralDO.UploadFile(Filename1, FileBytes, FileType, requestID);
                         }
                     }
-
-
-                    //foreach (RadComboBoxItem item in cbDemos.CheckedItems)
-                    //{
-                    //    if (item.Checked)
-                    //    {
-                    //        App_Code.IGBrandRepReferralDO.InsertRequestDemoLookup(requestID, Int32.Parse(item.Value));
-                    //        demosRequested += item.Text + ", ";
-                    //    }
-                    //}
-
-                    //demosRequested = demosRequested.Substring(0, demosRequested.Length - 2);
-
-
+                    DateTime CurrentDateTime = DateTime.Now;
                     //Send email to Matt.Warren@fortechenergyinc.com
-                    string userName = "Matt Warren";
-                    string userEmail = "matt.warren@fortechenergyinc.com";
-                    string userSubject = "Demo Request from " + firstName + " " + lastName + " (" + companyName + ")";
-                    //string userBody = "First Name: " + firstName + Environment.NewLine + 
-                    //                  "Last Name: " + lastName + Environment.NewLine + 
-                    //                  "Phone Number: " + phone + Environment.NewLine + 
-                    //                  "Email: " + email + Environment.NewLine +
-                    //                  "Company Name: " + companyName + Environment.NewLine + 
-                    //                  "Company URL: " + companyURL + Environment.NewLine + 
-                    //                  "Position/Title: " + position + Environment.NewLine + 
-                    //                  "Demos Requested: " + demosRequested + Environment.NewLine;
-
-                    string userEmailContent = BuildEmail(firstName, lastName, phone.ToString(), email, companyName, companyURL, position, demosRequested);
+                    string userName = "Angela Warren";
+                    string userEmail = "igbrandrepreferral@gmail.com";
+                    string userSubject = "[AutoFeature] Feature Request from " + InstagramUsername + " Rep's Name: " + RepsName + " (" + ParentsName + ")";
+                    string userEmailContent = BuildEmail(InstagramUsername, RepsName, RepsBirthday, ParentsName, Email, PayPalEmail, RepsBioResume, HaveSmallShop, SmallShopUsername, HowHear, WhatDoYouWant, IsAttachment, CurrentDateTime);
                     SendEmailViaNetMail(userEmail, userSubject, userEmailContent, true);
 
-                    string submitMessage = "Password(s) will be sent to the email provided pending approval (24-48 hours)";
-                    string script = "SuccessDialog(\" Successfully placed request for demo! " + submitMessage + "\");";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "SaveProgram", script, true);
+                    string userName1 = ParentsName;
+                    string userEmail1 = Email;
+                    string userSubject1 = "Thank You, From IG Brand Rep!";
+                    string userEmailContent1 = BuildEmailToClient(RepsName, ParentsName, CurrentDateTime);
+                    SendEmailViaNetMail(userEmail1, userSubject1, userEmailContent1, true);
 
-                    //lblMessage.Text = "Successfully placed request for demo!" + Environment.NewLine +
-                    //                  "Password(s) will be sent to the email provided pending approval (24-48 hours)";
-                    //lblMessage.Visible = true;
+                    string submitMessage = "We will be following-up with a PayPal invoice in the next 24-48 hours";
+                    string script = "SuccessDialog(\" Request successfully sent! " + submitMessage + "\");";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "SaveProgram", script, true);
 
                     ClearFields();
                 }
                 catch (Exception ex)
                 {
-                    string script = "ErrorDialog(\" Unable to place request for demo \");";
+                    string script = "ErrorDialog(\" Unable to place Feature Request \");";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "SaveProgram", script, true);
                 }
             }
@@ -181,37 +145,42 @@ namespace IGBrandRepReferral
             {
                 string script = "ErrorDialog(\" Please fill required fields \");";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "SaveProgram", script, true);
-
-                //lblMessage.Text = "Please fill required fields";
-                //lblMessage.Visible = true;
             }
+        }
+        protected void chkHaveSmallShop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkHaveSmallShop.Checked == true)
+            {
+                txtHaveSmallShop.Visible = true;
+            }
+            else
+            {
+                txtHaveSmallShop.Visible = false;
+            }
+
         }
         #endregion
 
         #region Utility Methods
         protected void ClearFields()
         {
-            txtFirstName.Text = "";
-            txtLastName.Text = "";
-            txtPhoneNumber.Text = "";
+            txtRepsName.Text = "";
+            txtParentsName.Text = "";
             txtEmail.Text = "";
-            txtCompanyName.Text = "";
-            txtCompanyURL.Text = "";
-            txtPositionTitle.Text = "";
-            cbDemos.SelectedIndex = -1;
-            txtAddress1.Text = "";
-            txtAddress2.Text = "";
-            ddlCountry.SelectedIndex = -1;
-            txtCity.Text = "";
-            ddlState.SelectedIndex = -1;
-            rfState.Enabled = false;
-            txtZipCode.Text = "";
-            lblStateError.Visible = false;
+            txtInstagramUsername.Text = "";
+            dpRepsBirthday.SelectedDate  = null;
+            txtPayPalEmail.Text = "";
+            txtRepsBioResume.Text = "";
+            chkHaveSmallShop.Checked = false;
+            txtHaveSmallShop.Text = "";
+            txtHaveSmallShop.Visible = false;
+            cbHowHear.SelectedValue = "1";
+            txtWhatDoYouWant.Text = "";
         }
         protected bool Validation()
         {
-            if (txtFirstName.Text == "" || txtLastName.Text == "" || txtPhoneNumber.Text == "" || txtEmail.Text == ""
-                || txtCompanyName.Text == "" || txtCompanyURL.Text == "" || txtPositionTitle.Text == "" || cbDemos.SelectedIndex == -1)
+            if (txtRepsName.Text == "" || txtParentsName.Text == "" || txtInstagramUsername.Text == "" || txtEmail.Text == ""
+                || dpRepsBirthday.SelectedDate == null || txtPayPalEmail.Text == "" || txtRepsBioResume.Text == "" || cbHowHear.SelectedIndex == 0)
             {
                 return false;
             }
@@ -269,89 +238,160 @@ namespace IGBrandRepReferral
             }
             return match.Groups[1].Value + domainName;
         }
-        protected static string BuildEmail(string firstName, string lastName, string phone, string email, string companyName, string companyURL, string position, string demos)
+        protected static string BuildEmail(string InstagramUsername, string RepsName, string RepsBirthday, string ParentsName, string Email, string PayPalEmail, string RepsBioResume, bool HaveSmallShop, string SmallShopUsername, int HowHear, string WhatDoYouWant, bool IsAttachment, DateTime DateRequestMade)
         {
-            System.Text.RegularExpressions.Regex oReg = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z])?[a-zA-Z]*)*\s+<(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})>$|^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,4})$");
+            string HasUploadedAttachments = "Have Not Submitted Photos As Yet";
+            string HowDidYouHearAboutUs = "Decline to Say";
+            string DoesHaveSmallShop = "No";
+            if (HaveSmallShop)
+                DoesHaveSmallShop = "Yes";
+            if (HowHear > 1)
+                HowDidYouHearAboutUs = App_Code.IGBrandRepReferralDO.GetHowHear(HowHear);
+            if (IsAttachment)
+                HasUploadedAttachments = "I have Uploaded my Photos to Your Website";
+            DateTime today = DateTime.Today;
+            int Age = 0;
+            if (!String.IsNullOrWhiteSpace(RepsBirthday))
+                Age = today.Year - Convert.ToDateTime(RepsBirthday).Year;
             StringBuilder oStr = new StringBuilder("");
             try
             {
+                oStr.Append("<table>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Requestor's IG Handle:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(InstagramUsername);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Rep's Name:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(RepsName);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Rep's Age:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(Age);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Rep's Birthday:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(RepsBirthday);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Parent's Name:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(ParentsName);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Requestor's Email:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(Email);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("PayPal Email:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(PayPalEmail);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Rep's Bio and Resume:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(RepsBioResume);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Does Requestor Have a Small Shop?:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(DoesHaveSmallShop);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Small Shop Username:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(SmallShopUsername);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("How Did You Hear About Us:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(HowDidYouHearAboutUs);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Please describe what you need/want from your Instagram brander community and how we can best support you:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(WhatDoYouWant);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Did You Upload An Attachment?:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(HasUploadedAttachments);
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                oStr.Append("<tr>");
+                oStr.Append("<td>");
+                oStr.Append("Date and Time Request Submitted:");
+                oStr.Append("</td>");
+                oStr.Append("<td>");
+                oStr.Append(DateRequestMade.ToString());
+                oStr.Append("</td>");
+                oStr.Append("</tr>");
+                //oStr.Append("<tr><td colspan='2'>Sent from Fortech Timesheet Copyright(c)2015</td></tr>");
+                oStr.Append("</table>");
 
-                if (oReg.IsMatch(email) == true)
-                {
-                    //	Email address given by the user appears to be valid.
+            }
 
-                    //ClassSmtp oSmtp = new ClassSmtp();
-                    //string AdminEmail = Util.ReadString("AdminEmail", "");
+            catch (Exception ex)
+            {
 
-                    oStr.Append("<table>");
-                    oStr.Append("<tr>");
-                    oStr.Append("<td>");
-                    oStr.Append("First Name:");
-                    oStr.Append("</td>");
-                    oStr.Append("<td>");
-                    oStr.Append(firstName);
-                    oStr.Append("</td>");
-                    oStr.Append("</tr>");
-                    oStr.Append("<tr>");
-                    oStr.Append("<td>");
-                    oStr.Append("Last Name:");
-                    oStr.Append("</td>");
-                    oStr.Append("<td>");
-                    oStr.Append(lastName);
-                    oStr.Append("</td>");
-                    oStr.Append("</tr>");
-                    oStr.Append("<tr>");
-                    oStr.Append("<td>");
-                    oStr.Append("Phone:");
-                    oStr.Append("</td>");
-                    oStr.Append("<td>");
-                    oStr.Append(phone);
-                    oStr.Append("</td>");
-                    oStr.Append("</tr>");
-                    oStr.Append("<tr>");
-                    oStr.Append("<td>");
-                    oStr.Append("Email:");
-                    oStr.Append("</td>");
-                    oStr.Append("<td>");
-                    oStr.Append(email);
-                    oStr.Append("</td>");
-                    oStr.Append("</tr>");
-                    oStr.Append("<tr>");
-                    oStr.Append("<td>");
-                    oStr.Append("Company Name:");
-                    oStr.Append("</td>");
-                    oStr.Append("<td>");
-                    oStr.Append(companyName);
-                    oStr.Append("</td>");
-                    oStr.Append("</tr>");
-                    oStr.Append("<tr>");
-                    oStr.Append("<td>");
-                    oStr.Append("Company URL:");
-                    oStr.Append("</td>");
-                    oStr.Append("<td>");
-                    oStr.Append(companyURL);
-                    oStr.Append("</td>");
-                    oStr.Append("</tr>");
-                    oStr.Append("<tr>");
-                    oStr.Append("<td>");
-                    oStr.Append("Position:");
-                    oStr.Append("</td>");
-                    oStr.Append("<td>");
-                    oStr.Append(position);
-                    oStr.Append("</td>");
-                    oStr.Append("</tr>");
-                    oStr.Append("<tr>");
-                    oStr.Append("<td>");
-                    oStr.Append("Demos Requested:");
-                    oStr.Append("</td>");
-                    oStr.Append("<td>");
-                    oStr.Append(demos);
-                    oStr.Append("</td>");
-                    oStr.Append("</tr>");
-                    //oStr.Append("<tr><td colspan='2'>Sent from Fortech Timesheet Copyright(c)2015</td></tr>");
-                    oStr.Append("</table>");
-                }
-
+            }
+            return oStr.ToString();
+        }
+        protected static string BuildEmailToClient(string RepsName, string ParentsName, DateTime DateRequestMade)
+        {
+            StringBuilder oStr = new StringBuilder("");
+            try
+            {
+                oStr.Append("<p><span style='color: #33cccc;'><strong><span style='font-size: medium;'>IG Brand Rep Referral</span></strong></span></p><p>Hello "); 
+                oStr.Append(ParentsName);
+                oStr.Append(",</p><p>Thank you for signing ");
+                oStr.Append(RepsName);
+                oStr.Append(" up with IG Brand Rep Referral on ");
+                oStr.Append(DateRequestMade);
+                oStr.Append(" .</p><p>We look forward to serving your needs!</p><p>Much Thanks,</p><p>Angela</p><p>igbrandrepreferral@gmail.com</p>");
             }
 
             catch (Exception ex)
@@ -362,12 +402,11 @@ namespace IGBrandRepReferral
         }
         protected Boolean SendEmailViaNetMail(string ToEmail, string Subject, string MsgBody, Boolean bHtml)
         {
-            string SendMethod = "Net.Mail";
             string SmtpServer = "smtp.gmail.com";
             int SmtpPortNo = 587;
             string SmtpUserName = "fortech2015@gmail.com";
             string SmtpPassword = "fortech$";
-            string FromEmail = "goaltrackfortech@gmail.com";
+            string FromEmail = "igbrandrepreferral@gmail.com";
 
             Boolean bRetVal = true;
 

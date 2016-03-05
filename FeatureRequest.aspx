@@ -5,78 +5,72 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <telerik:RadCodeBlock ID="RadCodeBlock2" runat="server">
     <script type="text/javascript">
+
+        function CheckEmail() {
+            var email = document.getElementById('<%=txtEmail.ClientID%>');
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+            if (!filter.test(email.value)) {
+                email.style.border = '1px solid red';
+                email.focus;
+                return false;
+            }
+            else {
+                email.style.border = '';
+                return true;
+            }
+        }
+
+        function CheckPayPalEmail() {
+            var email = document.getElementById('<%=txtPayPalEmail.ClientID%>');
+                    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+                    if (!filter.test(email.value)) {
+                        email.style.border = '1px solid red';
+                        email.focus;
+                        return false;
+                    }
+                    else {
+                        email.style.border = '';
+                        return true;
+                    }
+        }
+
         function IsValidEmail(sender, eventArgs) {
             var email = eventArgs.get_newValue();
             var id = '<%=lblMessage.ClientID%>';
             var lblMessage2 = document.getElementById(id);
             lblMessage2.style.display = 'none';
+            
         }
 
         function OnClickValidate() {
-            var phone = ValidatePhone();
-            var email = ValidateEmail();
-            if (phone && email) {
-                var updateProgress = $get("<%= loader.ClientID %>");
-                updateProgress.style.display = "block";
-                return true;
-            }
-            else {
-                return false;
-            }
+            Page_ClientValidate();
+            //alert('here I am');
+            //var email = ValidateEmail();
+            //if (email) {
+            //    var updateProgress = $get("<%= loader.ClientID %>");
+            //    updateProgress.style.display = "block";
+            //    return true;
+            //}
+            //else {
+            //    return false;
+           // }
         }
 
-        function ValidatePhone() {
-            var textbox = $find('<%= txtPhoneNumber.ClientID %>');
-            var length = textbox.get_textBoxValue().length;
-            if (Page_ClientValidate()) {
-                if (length < 10) {
-                    ErrorDialog("Phone number must be at least 10 digits");
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            }
-            else {
-                return false;
-            }
-        }
+        //function ValidateEmail() {
+            //alert('here I am next1');
+            //var textbox = $find('<%= txtEmail.ClientID %>');
+            //var email = textbox.get_textBoxValue();
+            //alert('here I am next2');
+            //if (Page_ClientValidate()) {
+               // return true;
+            //}
+            //else {
+               // return false;
+            //}
+        //}
 
-        function ValidateEmail() {
-            var textbox = $find('<%= txtEmail.ClientID %>');
-            var email = textbox.get_textBoxValue();
-            if (Page_ClientValidate()) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-
-        function EnableDisableState(sender, args) {
-            var value = $find("<%=ddlCountry.ClientID%>").get_selectedItem().get_value();
-            if (value == 1220) {
-                var ddl = $find('<%= ddlState.ClientID %>');
-                ddl.set_enabled(true);
-                var id = '<%=lblStateError.ClientID%>';
-                var lblMessage2 = document.getElementById(id);
-                lblMessage2.style.visibility = 'visible';
-                ValidatorEnable(document.getElementById('<%= rfState.ClientID %>'), true);
-            }
-            else {
-                var ddl = $find('<%= ddlState.ClientID %>');
-                ddl.set_enabled(false);
-                var id = '<%=lblStateError.ClientID%>';
-                var lblMessage2 = document.getElementById(id);
-                lblMessage2.style.visibility = 'hidden';
-                ValidatorEnable(document.getElementById('<%= rfState.ClientID %>'), false);
-            }
-        }
-        function ManuallyDisableStateValidation() {
-            alert("Before");
-            document.getElementById('ddlState').style.border = '1px solid #333';
-            alert("AFter");
-        }
         function ValidatorUpdateDisplay(val) {
             if (typeof (val.display) == "string") {
                 if (val.display == "None") {
@@ -142,62 +136,44 @@
             btn.style.left = "0px";
         }
 
+        function ClearCBValidation() {
+            var myVal = document.getElementById('<%=HowHearValidator.ClientID%>');
+            ValidatorEnable(myVal, false);
+        }
+
         function Clear() {
-            var myVal = document.getElementById('<%=RequiredFieldValidator1.ClientID%>');
+            var myVal = document.getElementById('<%=RepsNameValidator.ClientID%>');
             ValidatorEnable(myVal, false);
-            document.getElementById('<%=txtFirstName.ClientID%>').value = "";
+            document.getElementById('<%=txtRepsName.ClientID%>').value = "";
 
-            myVal = document.getElementById('<%=RequiredFieldValidator2.ClientID%>');
+            myVal = document.getElementById('<%=ParentsNameValidator.ClientID%>');
             ValidatorEnable(myVal, false);
-            document.getElementById('<%=txtLastName.ClientID%>').value = "";
+            document.getElementById('<%=txtParentsName.ClientID%>').value = "";
 
-            myVal = document.getElementById('<%=RequiredFieldValidator3.ClientID%>');
-            ValidatorEnable(myVal, false);
-            document.getElementById('<%=txtPhoneNumber.ClientID%>').value = "";
-
-            myVal = document.getElementById('<%=RequiredFieldValidator4.ClientID%>');
+            myVal = document.getElementById('<%=EmailValidator.ClientID%>');
             ValidatorEnable(myVal, false);
             document.getElementById('<%=txtEmail.ClientID%>').value = "";
 
-            myVal = document.getElementById('<%=RequiredFieldValidator5.ClientID%>');
+            myVal = document.getElementById('<%=InstagramUsernameValidator.ClientID%>');
             ValidatorEnable(myVal, false);
-            document.getElementById('<%=txtCompanyName.ClientID%>').value = "";
+            document.getElementById('<%=txtInstagramUsername.ClientID%>').value = "";
 
-            myVal = document.getElementById('<%=RequiredFieldValidator6.ClientID%>');
-            ValidatorEnable(myVal, false);
-            document.getElementById('<%=txtCompanyURL.ClientID%>').value = "";
-
-            myVal = document.getElementById('<%=RequiredFieldValidator7.ClientID%>');
-            ValidatorEnable(myVal, false);
-            document.getElementById('<%=txtPositionTitle.ClientID%>').value = "";
-
-            myVal = document.getElementById('<%=RequiredFieldValidator8.ClientID%>');
+            myVal = document.getElementById('<%=RepsBirthdayValidator.ClientID%>');
             ValidatorEnable(myVal, false);
 
-            myVal = document.getElementById('<%=RequiredFieldValidator9.ClientID%>');
+            myVal = document.getElementById('<%=PayPalEmailValidator.ClientID%>');
             ValidatorEnable(myVal, false);
-            document.getElementById('<%=txtAddress1.ClientID%>').value = "";
+            document.getElementById('<%=txtPayPalEmail.ClientID%>').value = "";
 
-            myVal = document.getElementById('<%=rfCountry.ClientID%>');
+            myVal = document.getElementById('<%=RepsBioResumeValidator.ClientID%>');
             ValidatorEnable(myVal, false);
+            document.getElementById('<%=txtRepsBioResume.ClientID%>').value = "";
 
-            myVal = document.getElementById('<%=RequiredFieldValidator10.ClientID%>');
-            ValidatorEnable(myVal, false);
-            document.getElementById('<%=txtCity.ClientID%>').value = "";
-
-            myVal = document.getElementById('<%=rfState.ClientID%>');
+            myVal = document.getElementById('<%=HowHearValidator.ClientID%>');
             ValidatorEnable(myVal, false);
 
-            myVal = document.getElementById('<%=RequiredFieldValidator11.ClientID%>');
-            ValidatorEnable(myVal, false);
-            document.getElementById('<%=txtZipCode.ClientID%>').value = "";
-
-            return true;
-        }
-
-        function ClearState() {
-            var myVal = document.getElementById('<%=rfState.ClientID%>');
-            ValidatorEnable(myVal, false);
+            document.getElementById('<%=chkHaveSmallShop.ClientID%>').checked = false;
+            document.getElementById('<%=txtHaveSmallShop.ClientID%>').value = "";
 
             return true;
         }
@@ -207,9 +183,9 @@
 
     <link href="/Styles/jquery-ui.theme.min.css" rel="stylesheet" />
 
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="/js/jquery-1.12.1.js"></script>
 
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="/js/jquery-ui.js"></script>
 
     <script src="../../JS/DialogBox.js"> </script>
     <style type="text/css">
@@ -279,23 +255,92 @@
                     <asp:Table ID="Table1" runat="server" HorizontalAlign="Center">
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:Table ID="Table2" runat="server" HorizontalAlign="Center">
+                                <asp:Table ID="Table2" runat="server" HorizontalAlign="Center" Width="15%">
                                     <asp:TableRow>
                                         <asp:TableHeaderCell>
-                                            First Name<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            Rep's Name<font color="red">*</font>
+                                            <asp:RequiredFieldValidator ID="RepsNameValidator" runat="server" ControlToValidate="txtRepsName" ForeColor="Red" ValidationGroup="MainValidation"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <telerik:RadTextBox ID="txtRepsName" runat="server" Width="100%"></telerik:RadTextBox>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow Height="25px">
+                                        <asp:TableCell>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
                                         <asp:TableHeaderCell>
-                                            Last Name<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            Parent's Name<font color="red">*</font>
+                                            <asp:RequiredFieldValidator ID="ParentsNameValidator" runat="server" ControlToValidate="txtParentsName" ForeColor="Red" ValidationGroup="MainValidation"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>
-                                            Phone Number<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPhoneNumber" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </asp:TableHeaderCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <telerik:RadTextBox ID="txtParentsName" runat="server" Width="100%"></telerik:RadTextBox>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow Height="25px">
+                                        <asp:TableCell>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
                                         <asp:TableHeaderCell>
                                             E-Mail<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEmail" ForeColor="Red" Display="Static"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="EmailValidator" runat="server" ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="MainValidation"></asp:RequiredFieldValidator>
+                                            <asp:ImageButton ID="ImageButton1" runat="server" OnClientClick="return false;" Width="18px" ImageUrl="~/images/info_small.png" />
+                                            <telerik:RadToolTip ID="RadToolTip1" runat="server" Position="MiddleRight" RelativeTo="Element"
+                                                TargetControlID="ImageButton1" Width="200px" HideEvent="ManualClose"
+                                                OnClientShow="OnClientShow">
+                                                Must be a valid e-mail address.
+                                            </telerik:RadToolTip>
+                                        </asp:TableHeaderCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:TextBox ID="txtEmail" runat="server" onchange="javascript: CheckEmail();" Width="100%"></asp:TextBox>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow Height="25px">
+                                        <asp:TableCell>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableHeaderCell>
+                                            Instagram Username<font color="red">*</font>
+                                            <asp:RequiredFieldValidator ID="InstagramUsernameValidator" runat="server" ControlToValidate="txtInstagramUsername" ForeColor="Red" ValidationGroup="MainValidation"></asp:RequiredFieldValidator>
+                                        </asp:TableHeaderCell>
+                                   </asp:TableRow>
+                                   <asp:TableRow>
+                                        <asp:TableCell>
+                                            <telerik:RadTextBox ID="txtInstagramUsername" runat="server" Width="100%"></telerik:RadTextBox>
+                                        </asp:TableCell>
+                                   </asp:TableRow>
+                                    <asp:TableRow Height="25px">
+                                        <asp:TableCell>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                   <asp:TableRow>
+                                        <asp:TableHeaderCell>
+                                            Rep's Birthday<font color="red">*</font>
+                                            <asp:RequiredFieldValidator ID="RepsBirthdayValidator" ErrorMessage=" Happy __ :)" runat="server" ControlToValidate="dpRepsBirthday" ForeColor="Red" ValidationGroup="MainValidation"></asp:RequiredFieldValidator>
+                                        </asp:TableHeaderCell>
+                                   </asp:TableRow>
+                                   <asp:TableRow>
+                                        <asp:TableCell>
+                                            <telerik:RadDatePicker ID="dpRepsBirthday" runat="server" Width="100%"></telerik:RadDatePicker>
+                                        </asp:TableCell>
+                                   </asp:TableRow>
+                                    <asp:TableRow Height="25px">
+                                        <asp:TableCell>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                   <asp:TableRow>
+                                        <asp:TableHeaderCell>
+                                            Pay Pal E-Mail<font color="red">*</font>
+                                            <asp:RequiredFieldValidator ID="PayPalEmailValidator" runat="server" ControlToValidate="txtPayPalEmail" ForeColor="Red" ValidationGroup="MainValidation"></asp:RequiredFieldValidator>
                                             <asp:ImageButton ID="PeriodToolTip" runat="server" OnClientClick="return false;" Width="18px" ImageUrl="~/images/info_small.png" />
                                             <telerik:RadToolTip ID="RadToolTip4" runat="server" Position="MiddleRight" RelativeTo="Element"
                                                 TargetControlID="PeriodToolTip" Width="200px" HideEvent="ManualClose"
@@ -303,92 +348,73 @@
                                                 Must be a valid e-mail address.
                                             </telerik:RadToolTip>
                                         </asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>
-                                            Company Name<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtCompanyName" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>
-                                            Company URL<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtCompanyURL" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>
-                                            Position/Title<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtPositionTitle" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>
-                                            Select Demos<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="cbDemos" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </asp:TableHeaderCell>
-                                    </asp:TableRow>
-                                    <asp:TableRow>
+                                   </asp:TableRow>
+                                   <asp:TableRow>
                                         <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtFirstName" runat="server" Width="100%"></telerik:RadTextBox>
+                                            <asp:TextBox ID="txtPayPalEmail" runat="server" onchange="javascript: CheckPayPalEmail();" Width="100%"></asp:TextBox>
                                         </asp:TableCell>
+                                   </asp:TableRow>
+                                    <asp:TableRow Height="25px">
                                         <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtLastName" runat="server" Width="100%"></telerik:RadTextBox>
-                                        </asp:TableCell>
-                                        <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtPhoneNumber" runat="server" Width="100%"></telerik:RadTextBox>
-                                        </asp:TableCell>
-                                        <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtEmail" runat="server" ClientEvents-OnValueChanged="IsValidEmail"></telerik:RadTextBox>
-                                        </asp:TableCell>
-                                        <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtCompanyName" runat="server" Width="100%"></telerik:RadTextBox>
-                                        </asp:TableCell>
-                                        <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtCompanyURL" runat="server" Width="100%"></telerik:RadTextBox>
-                                        </asp:TableCell>
-                                        <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtPositionTitle" runat="server"></telerik:RadTextBox>
-                                        </asp:TableCell>
-                                        <asp:TableCell>
-                                            <telerik:RadDropDownList ID="cbDemos" runat="server" DefaultMessage="--Select--" AppendDataBoundItems="true" Enabled="true" CausesValidation="false"></telerik:RadDropDownList>
                                         </asp:TableCell>
                                     </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableHeaderCell ColumnSpan="2">
-                                            Address Line 1<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtAddress1" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </asp:TableHeaderCell>
-                                        <asp:TableHeaderCell ColumnSpan="2">
-                                            Address Line 2 (Optional)
-                                        </asp:TableHeaderCell>
+                                   <asp:TableRow>
                                         <asp:TableHeaderCell>
-                                            Country<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="rfCountry" runat="server" ControlToValidate="ddlCountry" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            Rep's Bio/Resume<font color="red">*</font>
+                                            <asp:RequiredFieldValidator ID="RepsBioResumeValidator" runat="server" ControlToValidate="txtRepsBioResume" ForeColor="Red" ValidationGroup="MainValidation"></asp:RequiredFieldValidator>
                                         </asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>
-                                            City<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtCity" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>
-                                            State<asp:Label ID="lblStateError" runat="server" Text="*" ForeColor="Red" style="visibility:hidden;"></asp:Label>
-                                            <asp:RequiredFieldValidator ID="rfState" runat="server" ControlToValidate="ddlState" ForeColor="Red" Enabled="false"></asp:RequiredFieldValidator>
-                                        </asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>
-                                            Zip Code<font color="red">*</font>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtZipCode" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </asp:TableHeaderCell>
+                                   </asp:TableRow>
+                                   <asp:TableRow>
+                                        <asp:TableCell>
+                                            <telerik:RadTextBox ID="txtRepsBioResume" runat="server" Width="100%" TextMode="MultiLine" Height="100px"></telerik:RadTextBox>
+                                        </asp:TableCell>
+                                   </asp:TableRow>
+                                    <asp:TableRow Height="25px">
+                                        <asp:TableCell>
+                                        </asp:TableCell>
                                     </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableCell ColumnSpan="2">
-                                            <telerik:RadTextBox ID="txtAddress1" runat="server" Width="100%"></telerik:RadTextBox>
-                                        </asp:TableCell>
-                                        <asp:TableCell ColumnSpan="2">
-                                            <telerik:RadTextBox ID="txtAddress2" runat="server" Width="100%"></telerik:RadTextBox>
-                                        </asp:TableCell>
+                                   <asp:TableRow>
+                                        <asp:TableHeaderCell>
+                                            Do You Have a Small Shop?
+                                        </asp:TableHeaderCell>
+                                   </asp:TableRow>
+                                   <asp:TableRow>
                                         <asp:TableCell>
-                                            <telerik:RadDropDownList ID="ddlCountry" runat="server" AppendDataBoundItems="true" DefaultMessage="--Select--" Width="100%" DropDownHeight="240px" OnClientSelectedIndexChanged="EnableDisableState" CausesValidation="false"></telerik:RadDropDownList>
+                                            <asp:CheckBox ID="chkHaveSmallShop" runat="server" Text="Yes?" OnCheckedChanged="chkHaveSmallShop_CheckedChanged" AutoPostBack="true"/>
+                                            <telerik:RadTextBox ID="txtHaveSmallShop" DisplayText="Instagram Username?" Visible="false" runat="server"></telerik:RadTextBox>
                                         </asp:TableCell>
+                                   </asp:TableRow>
+                                    <asp:TableRow Height="25px">
                                         <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtCity" runat="server" Width="100%"></telerik:RadTextBox>
                                         </asp:TableCell>
+                                    </asp:TableRow>
+                                   <asp:TableRow>
+                                        <asp:TableHeaderCell>
+                                            How Did You Hear About Us?<font color="red">*</font>
+                                            <asp:RequiredFieldValidator ID="HowHearValidator" runat="server" ControlToValidate="cbHowHear" ForeColor="Red" ValidationGroup="MainValidation"></asp:RequiredFieldValidator>
+                                        </asp:TableHeaderCell>
+                                   </asp:TableRow>
+                                   <asp:TableRow>
                                         <asp:TableCell>
-                                            <telerik:RadDropDownList ID="ddlState" runat="server" AppendDataBoundItems="true" DefaultMessage="--Select--" DropDownHeight="240px" CausesValidation="false" OnClientSelectedIndexChanged="EnableDisableState"></telerik:RadDropDownList>
+                                            <telerik:RadDropDownList ID="cbHowHear" runat="server" Enabled="true" CausesValidation="false" Width="100%" OnClientSelectedIndexChanged="ClearCBValidation"></telerik:RadDropDownList>
                                         </asp:TableCell>
+                                   </asp:TableRow>
+                                    <asp:TableRow Height="25px">
                                         <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtZipCode" runat="server"></telerik:RadTextBox>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                   <asp:TableRow>
+                                        <asp:TableHeaderCell>
+                                            Please Describe What You Need or Want from your Instagram Brand Rep Community and How We Can Best Support You?
+                                        </asp:TableHeaderCell>
+                                   </asp:TableRow>
+                                   <asp:TableRow>
+                                        <asp:TableCell>
+                                            <telerik:RadTextBox ID="txtWhatDoYouWant" runat="server" Width="100%" TextMode="MultiLine" Height="100px"></telerik:RadTextBox>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow Height="25px">
+                                        <asp:TableCell>
                                         </asp:TableCell>
                                     </asp:TableRow>
                                     <asp:TableRow>
@@ -399,20 +425,7 @@
                                     <asp:TableRow>
                                         <asp:TableCell ColumnSpan="2">
                                             <telerik:RadAsyncUpload RenderMode="Lightweight" TemporaryFolder="~/App_Data/RadUploadTemp" runat="server" ID="AttachmentUpload" MultipleFileSelection="Automatic" Width="100%" />
-                                            <telerik:RadProgressArea RenderMode="Lightweight" runat="server" ID="RadProgressArea1"  />
                                         </asp:TableCell>
-
- <%--                                       Reps Name
-Parent Name
-email
-instagram handle
-reps age
-reps birthday
-pay pal email
-How did you hear about us?
-Reps bio and rep resume -Please insure shop names are spelled correctly and include @--%>
-
-
                                     </asp:TableRow>
                                 </asp:Table>
                                 <asp:Table ID="Table3" runat="server" Width="100%" HorizontalAlign="Center">
@@ -429,6 +442,7 @@ Reps bio and rep resume -Please insure shop names are spelled correctly and incl
                                 </asp:Table>
                                 <div align="center">
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter valid e-mail address" ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" ControlToValidate="txtEmail" Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    <br /><asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Please enter valid PayPal e-mail address" ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" ControlToValidate="txtPayPalEmail" Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
                                     <asp:label ID="lblMessage" runat="server" Text="Please enter valid company e-mail address" ForeColor="Red" Style="display: none;"></asp:label>
                                 </div>
                                 <asp:Table ID="Table4" runat="server" Width="100%" HorizontalAlign="Center">

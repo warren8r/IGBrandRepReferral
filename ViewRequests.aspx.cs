@@ -15,8 +15,8 @@ namespace IGBrandRepReferral
         {
             if (!IsPostBack)
             {
-                DataTable dt = App_Code.IGBrandRepReferralDO.GetAllDemos();
-                ddlDemo.DataTextField = "DemoName";
+                DataTable dt = App_Code.IGBrandRepReferralDO.GetAllHowHear();
+                ddlDemo.DataTextField = "HowHearDesc";
                 ddlDemo.DataValueField = "ID";
                 ddlDemo.DataSource = dt;
                 ddlDemo.DataBind();

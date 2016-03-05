@@ -9,12 +9,12 @@ namespace IGBrandRepReferral.App_Code
 {
     public class IGBrandRepReferralDO
     {
-        public static DataTable GetAllDemos()
+        public static DataTable GetAllHowHear()
         {
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("[dbo].[GetAllDemos]", conn);
+                SqlCommand cmd = new SqlCommand("[dbo].[GetAllHowHear]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -30,69 +30,26 @@ namespace IGBrandRepReferral.App_Code
             return dt;
         }
 
-        public static DataTable GetAllCountries()
-        {
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("[dbo].[GetAllCountries]", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                try
-                {
-                    da.Fill(dt);
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-            return dt;
-        }
-
-        public static DataTable GetAllStates()
-        {
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("[dbo].[GetAllStates]", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                try
-                {
-                    da.Fill(dt);
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-            return dt;
-        }
-
-        public static int InsertRequest(string firstName, string lastName, string phone, string email, string companyName, string companyURL, string position,
-                                        string address1, string address2, int countryID, string city, int stateID, string zipCode)
+        public static int InsertUpdateFeatureRequest(int ID, string RepsName, string ParentsName, string Email, string InstagramUsername, string RepsBirthday, string PayPalEmail, string RepsBioResume, bool HaveSmallShop, string SmallShopUsername, int HowHear, string WhatDoYouWant)
         {
             int id = 0;
             using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("[dbo].[InsertRequest]", conn);
+                SqlCommand cmd = new SqlCommand("[dbo].[InsertUpdateFeatureRequest]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@FirstName", firstName);
-                cmd.Parameters.AddWithValue("@LastName", lastName);
-                cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@CompanyName", companyName);
-                cmd.Parameters.AddWithValue("@CompanyURL", companyURL);
-                cmd.Parameters.AddWithValue("@Position", position);
-                cmd.Parameters.AddWithValue("@Address1", address1);
-                cmd.Parameters.AddWithValue("@Address2", address2);
-                cmd.Parameters.AddWithValue("@CountryID", countryID);
-                cmd.Parameters.AddWithValue("@City", city);
-                cmd.Parameters.AddWithValue("@StateID", stateID);
-                cmd.Parameters.AddWithValue("@ZipCode", zipCode);
+
+                cmd.Parameters.AddWithValue("@ID", ID);
+                cmd.Parameters.AddWithValue("@RepsName", RepsName);
+                cmd.Parameters.AddWithValue("@ParentsName", ParentsName);
+                cmd.Parameters.AddWithValue("@Email", Email);
+                cmd.Parameters.AddWithValue("@InstagramUsername", InstagramUsername);
+                cmd.Parameters.AddWithValue("@RepsBirthday", RepsBirthday);
+                cmd.Parameters.AddWithValue("@PayPalEmail", PayPalEmail);
+                cmd.Parameters.AddWithValue("@RepsBioResume", RepsBioResume);
+                cmd.Parameters.AddWithValue("@HaveSmallShop", HaveSmallShop);
+                cmd.Parameters.AddWithValue("@SmallShopUsername", SmallShopUsername);
+                cmd.Parameters.AddWithValue("@HowHear", HowHear);
+                cmd.Parameters.AddWithValue("@WhatDoYouWant", WhatDoYouWant);
 
                 conn.Open();
 
@@ -108,25 +65,29 @@ namespace IGBrandRepReferral.App_Code
             return id;
         }
 
-        public static void InsertRequestDemoLookup(int requestID, int demoID)
+        public static string GetHowHear(int HowHear)
         {
+            string HowDidYouHear = "";
+
             using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("[dbo].[InsertRequestDemoLookup]", conn);
+                SqlCommand cmd = new SqlCommand("[dbo].[GetHowHear]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@RequestID", requestID);
-                cmd.Parameters.AddWithValue("@DemoID", demoID);
+
+                cmd.Parameters.AddWithValue("@HowHearID", HowHear);
 
                 conn.Open();
 
                 try
                 {
-                    cmd.ExecuteNonQuery();
+                    object rtnObj = cmd.ExecuteScalar();
+                    HowDidYouHear = rtnObj.ToString();
                 }
                 catch (Exception ex)
                 {
                 }
             }
+            return HowDidYouHear;
         }
 
         public static int UploadFile(string fileName, byte[] fileBytes, string fileType, int requestID)

@@ -8,7 +8,6 @@
     margin: 0 0 0 36px;
 }
 
-
 .RadWindow{
    
     z-index: 999999 !important;
@@ -98,9 +97,6 @@
 {   
     cursor:pointer;
 }
-
-
-
 
 /*// search button orange*/
 .button-CloseRed
@@ -479,13 +475,10 @@ canvas
     }
 
 h1, h2, h3, h4 {
-    color: #010A15;
+    color: lightcoral;
     margin-bottom: 0px;
     margin-top: 3px;
-    font-size: 1.5em;
-    font-weight: 600;
-    font-variant: small-caps;
-    text-transform: none;
+    font-family:Papyrus;
 }
 
 h20 {
@@ -628,8 +621,8 @@ h6 {
 /*jd for table cell headers*/
 fieldset table table th {
     font-size: small;
-    background-color: #3a4f63;
-    color: white;
+    background-color: #F1F1F1;
+    color: teal;
 }
 
 
@@ -645,7 +638,7 @@ body {
 .logo {
     color: #fff !important;
     width: 100%;
-    background-color: #597791;
+    background-color: lightcoral;
 }
 
 fieldset {
@@ -729,9 +722,9 @@ legend {
 }
 
 .RadGrid_Forest .rgRow a, .RadGrid_Forest .rgAltRow a, .RadGrid_Forest .rgEditRow a, .RadGrid_Forest .rgFooter a, .RadGrid_Forest .rgEditForm a {
-    color: Blue;
+    color: Teal;
 }
 
 .RadForm_Forest.rfdGrids .rfdTable a {
-    color: Blue;
+    color: Teal;
 }

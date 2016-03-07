@@ -143,6 +143,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
     <Content Include="About.aspx" />
     <Content Include="AttachmentModal.aspx" />
     <Content Include="bin\Telerik.Web.Design.dll" />
@@ -150,7 +152,6 @@
     <Content Include="bin\Telerik.Web.UI.dll" />
     <Content Include="bin\Telerik.Web.UI.Skins.dll" />
     <Content Include="Contact.aspx" />
-    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -205,15 +206,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="css\Animate.css" />
-    <Content Include="css\Default\editor.png" />
-    <Content Include="css\Default\imagebrowser.png" />
-    <Content Include="css\Default\loading-image.gif" />
-    <Content Include="css\Default\loading.gif" />
-    <Content Include="css\Default\slider-h.gif" />
-    <Content Include="css\Default\slider-v.gif" />
-    <Content Include="css\Default\sprite%402x.png" />
-    <Content Include="css\Default\sprite.png" />
     <Content Include="css\images\angle-averaging.jpg" />
     <Content Include="css\images\Balanced-Tangential.jpg" />
     <Content Include="css\images\btnRedraw.png" />
@@ -242,29 +234,9 @@
     <Content Include="css\images\ZoomIn80Hover.png" />
     <Content Include="css\images\ZoomOut70.png" />
     <Content Include="css\images\ZoomOut70Hover.png" />
-    <Content Include="css\jquery-ui-1.10.2.custom.css" />
-    <Content Include="css\jquery-ui-1.10.3.custom.css" />
-    <Content Include="css\jquery.ui.tabs.css" />
-    <Content Include="css\kendo.default.min.css" />
     <Content Include="css\main.css" />
-    <Content Include="css\main3DGraph.css" />
-    <Content Include="css\mdm.min.css" />
-    <Content Include="css\style_Sean.css" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
     <Content Include="Images\IGBrandRepReferralLogo.png" />
-    <Content Include="Images\info_small.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
+    <Content Include="Images\ripple.gif" />
     <Content Include="js\cmManageEvents.js" />
     <Content Include="js\DialogBox.js" />
     <Content Include="js\doubleListBox.js" />
@@ -276,6 +248,7 @@
     <Content Include="js\jquery-1.9.1.js" />
     <Content Include="js\jquery-ui-1.10.2.custom.js" />
     <Content Include="js\jquery-ui-1.10.3.custom.js" />
+    <Content Include="js\jquery-ui.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\jquery.ui.tabs.js" />
     <Content Include="js\jquery_1.9.1.js" />
@@ -285,38 +258,8 @@
     <Content Include="js\PDFCreator.js" />
     <Content Include="js\underscore.js" />
     <Content Include="IGBrandRepReferral.Master" />
-    <Content Include="css\mdm.less" />
-    <Content Include="css\mdm2.less" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\IGBrandRepReferral.pubxml" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
-    <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Scripts\WebForms\DetailsView.js" />
-    <Content Include="Scripts\WebForms\Focus.js" />
-    <Content Include="Scripts\WebForms\GridView.js" />
-    <Content Include="Scripts\WebForms\Menu.js" />
-    <Content Include="Scripts\WebForms\MenuStandards.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
-    <Content Include="Scripts\WebForms\SmartNav.js" />
-    <Content Include="Scripts\WebForms\TreeView.js" />
-    <Content Include="Scripts\WebForms\WebForms.js" />
-    <Content Include="Scripts\WebForms\WebParts.js" />
-    <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="FeatureRequest.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Styles\Images\ui-bg_diagonals-thick_20_666666_40x40.png" />
@@ -340,7 +283,6 @@
     <Content Include="Styles\Images\ui-icons_ef8c08_256x240.png" />
     <Content Include="Styles\jquery-ui.min.css" />
     <Content Include="Styles\jquery-ui.theme.min.css" />
-    <Content Include="Styles\Site.css" />
     <Content Include="ViewRequests.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -384,6 +326,9 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewRequests.aspx.cs">
       <DependentUpon>ViewRequests.aspx</DependentUpon>
@@ -394,8 +339,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\RadUploadTemp\" />
     <Folder Include="App_Start\" />
+    <Folder Include="css\Default\" />
+    <Folder Include="Scripts\WebForms\MSAjax\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">

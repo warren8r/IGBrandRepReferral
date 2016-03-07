@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"></asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="customCss" runat="server"></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <telerik:RadCodeBlock ID="RadCodeBlock2" runat="server">
     <script type="text/javascript">
         function SuccessDialog(content) {
             $(function () {
@@ -50,25 +51,59 @@
 
             });
             //Dialog('Error', content);
-
-
         }
     </script>
+    <style type="text/css">
+        body
+        {
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+        }
+        .modal
+        {
+            position: fixed;
+            z-index: 999;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            background-color: Black;
+            filter: alpha(opacity=60);
+            opacity: 0.6;
+            -moz-opacity: 0.8;
+        }
+        .center
+        {
+            z-index: 1000;
+            margin: 300px auto;
+            padding: 10px;
+            width: 130px;
+            background-color: White;
+            border-radius: 10px;
+            filter: alpha(opacity=100);
+            opacity: 1;
+            -moz-opacity: 1;
+        }
+        .center img
+        {
+            height: 128px;
+            width: 128px;
+        }
+    </style>
+    </telerik:RadCodeBlock>
 
-    <asp:UpdateProgress ID="loader" runat="server" DisplayAfter="0">
+    <asp:UpdateProgress ID="loader" runat="server" DisplayAfter="0" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
-
-            <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; padding-top: 15%; z-index: 9999999;">
-
-                <div class="loader2">Loading...</div>
-
+            <div id="div1" class="modal" visible="false">
+                <div class="center">
+                    <img alt="" src="/Images/ripple.gif" />
+                </div>
             </div>
-
         </ProgressTemplate>
     </asp:UpdateProgress>
 
     <fieldset>
-        <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Table ID="MainPage" runat="server" HorizontalAlign="Center" Width="100%">
                     <asp:TableRow>
@@ -83,36 +118,71 @@
                             <asp:Table runat="server" HorizontalAlign="Center">
                                 <asp:TableRow>
                                     <asp:TableHeaderCell>
-                                        First Name
+                                        ID
                                     </asp:TableHeaderCell>
                                     <asp:TableHeaderCell>
-                                        Last Name
+                                        Rep's Name
                                     </asp:TableHeaderCell>
                                     <asp:TableHeaderCell>
-                                        Company
+                                        Parent's Name
                                     </asp:TableHeaderCell>
                                     <asp:TableHeaderCell>
-                                        Demo Requested
+                                        How Did You Hear?
                                     </asp:TableHeaderCell>
                                     <asp:TableHeaderCell></asp:TableHeaderCell>
                                 </asp:TableRow>
                                 <asp:TableRow>
                                     <asp:TableCell>
-                                        <telerik:RadTextBox ID="txtFirstName" runat="server"></telerik:RadTextBox>
+                                        <telerik:RadTextBox ID="txtID" runat="server"></telerik:RadTextBox>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <telerik:RadTextBox ID="txtLastName" runat="server"></telerik:RadTextBox>
+                                        <telerik:RadTextBox ID="txtRepsName" runat="server"></telerik:RadTextBox>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <telerik:RadTextBox ID="txtCompany" runat="server"></telerik:RadTextBox>
+                                        <telerik:RadTextBox ID="txtParentsName" runat="server"></telerik:RadTextBox>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <telerik:RadDropDownList ID="ddlDemo" runat="server" AppendDataBoundItems="true">
+                                        <telerik:RadDropDownList ID="ddlHowHear" runat="server" AppendDataBoundItems="true">
                                             <Items>
                                                 <telerik:DropDownListItem Value="0" Text="--Select--" />
                                             </Items>
                                         </telerik:RadDropDownList>
                                     </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableHeaderCell>
+                                        Instagram Username
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>
+                                        Rep's Age
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>
+                                        PayPal Email
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>
+                                        Do you have a small shop?
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell></asp:TableHeaderCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableCell>
+                                        <telerik:RadTextBox ID="RadTextBox1" runat="server"></telerik:RadTextBox>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <telerik:RadTextBox ID="RadTextBox2" runat="server"></telerik:RadTextBox>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <telerik:RadTextBox ID="RadTextBox3" runat="server"></telerik:RadTextBox>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <telerik:RadDropDownList ID="RadDropDownList1" runat="server" AppendDataBoundItems="true">
+                                            <Items>
+                                                <telerik:DropDownListItem Value="0" Text="--Select--" />
+                                            </Items>
+                                        </telerik:RadDropDownList>
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
                                     <asp:TableCell>
                                         <telerik:RadButton ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click"></telerik:RadButton>
                                         <telerik:RadButton ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click"></telerik:RadButton>

@@ -16,10 +16,10 @@ namespace IGBrandRepReferral
             if (!IsPostBack)
             {
                 DataTable dt = App_Code.IGBrandRepReferralDO.GetAllHowHear();
-                ddlDemo.DataTextField = "HowHearDesc";
-                ddlDemo.DataValueField = "ID";
-                ddlDemo.DataSource = dt;
-                ddlDemo.DataBind();
+                ddlHowHear.DataTextField = "HowHearDesc";
+                ddlHowHear.DataValueField = "ID";
+                ddlHowHear.DataSource = dt;
+                ddlHowHear.DataBind();
             }
         }
 
@@ -37,11 +37,11 @@ namespace IGBrandRepReferral
         protected DataTable Search()
         {
             DataTable dt = new DataTable();
-            string firstName = txtFirstName.Text;
-            string lastName = txtLastName.Text;
-            string companyName = txtCompany.Text;
-            int demoID = Int32.Parse(ddlDemo.SelectedValue);
-            dt = App_Code.IGBrandRepReferralDO.SearchRequests(firstName, lastName, companyName, demoID);
+            //string firstName = txtFirstName.Text;
+            //string lastName = txtLastName.Text;
+            //string companyName = txtCompany.Text;
+            //int demoID = Int32.Parse(ddlDemo.SelectedValue);
+            //dt = App_Code.IGBrandRepReferralDO.SearchRequests(firstName, lastName, companyName, demoID);
             return dt;
         }
 
@@ -52,10 +52,10 @@ namespace IGBrandRepReferral
 
         protected void ClearFields()
         {
-            txtFirstName.Text = "";
-            txtLastName.Text = "";
-            txtCompany.Text = "";
-            ddlDemo.SelectedIndex = -1;
+            //txtFirstName.Text = "";
+            //txtLastName.Text = "";
+            //txtCompany.Text = "";
+            //ddlDemo.SelectedIndex = -1;
             RadGrid1.DataSource = Search();
             RadGrid1.DataBind();
         }

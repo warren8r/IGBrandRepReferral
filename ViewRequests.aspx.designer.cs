@@ -13,6 +13,15 @@ namespace IGBrandRepReferral {
     public partial class ViewRequests {
         
         /// <summary>
+        /// RadCodeBlock2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadCodeBlock RadCodeBlock2;
+        
+        /// <summary>
         /// loader control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace IGBrandRepReferral {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress loader;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// MainPage control.
@@ -31,40 +49,76 @@ namespace IGBrandRepReferral {
         protected global::System.Web.UI.WebControls.Table MainPage;
         
         /// <summary>
-        /// txtFirstName control.
+        /// txtID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox txtFirstName;
+        protected global::Telerik.Web.UI.RadTextBox txtID;
         
         /// <summary>
-        /// txtLastName control.
+        /// txtRepsName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox txtLastName;
+        protected global::Telerik.Web.UI.RadTextBox txtRepsName;
         
         /// <summary>
-        /// txtCompany control.
+        /// txtParentsName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox txtCompany;
+        protected global::Telerik.Web.UI.RadTextBox txtParentsName;
         
         /// <summary>
-        /// ddlDemo control.
+        /// ddlHowHear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList ddlDemo;
+        protected global::Telerik.Web.UI.RadDropDownList ddlHowHear;
+        
+        /// <summary>
+        /// RadTextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox RadTextBox1;
+        
+        /// <summary>
+        /// RadTextBox2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox RadTextBox2;
+        
+        /// <summary>
+        /// RadTextBox3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox RadTextBox3;
+        
+        /// <summary>
+        /// RadDropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList RadDropDownList1;
         
         /// <summary>
         /// btnSearch control.

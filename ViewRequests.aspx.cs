@@ -37,11 +37,24 @@ namespace IGBrandRepReferral
         protected DataTable Search()
         {
             DataTable dt = new DataTable();
-            //string firstName = txtFirstName.Text;
-            //string lastName = txtLastName.Text;
-            //string companyName = txtCompany.Text;
-            //int demoID = Int32.Parse(ddlDemo.SelectedValue);
-            //dt = App_Code.IGBrandRepReferralDO.SearchRequests(firstName, lastName, companyName, demoID);
+
+            string RepsName = txtRepsName.Text;
+            string ParentsName = txtParentsName.Text;
+            int HowHear = Int32.Parse(ddlHowHear.SelectedValue);
+            string InstagramUsername = txtInstagramUsername.Text;
+
+            string RepsBirthdayBegin = Convert.ToString(dpBirthdayBegin.SelectedDate);
+            string RepsBirthdayEnd = Convert.ToString(dpBirthdayEnd.SelectedDate);
+            string Email = txtEmail.Text;
+            string HasSmallShop = ddHasSmallShop.SelectedValue;
+
+            string PayPalInvoiceNumber = txtPayPalInvoiceNumber.Text;
+            string PayPalEmail = txtPayPalEmail.Text;
+            string RequestDateRangeBegin = Convert.ToString(dpRequestBegin.SelectedDate);
+            string RequestDateRangeEnd = Convert.ToString(dpRequestEnd.SelectedDate);
+            string HasPaid = ddHasPaid.SelectedValue;
+
+            dt = App_Code.IGBrandRepReferralDO.SearchRequests(RepsName, ParentsName, HowHear, InstagramUsername, RepsBirthdayBegin, RepsBirthdayEnd, Email, HasSmallShop, PayPalInvoiceNumber, PayPalEmail, RequestDateRangeBegin, RequestDateRangeEnd, HasPaid);
             return dt;
         }
 

@@ -49,15 +49,6 @@ namespace IGBrandRepReferral {
         protected global::System.Web.UI.WebControls.Table MainPage;
         
         /// <summary>
-        /// txtID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox txtID;
-        
-        /// <summary>
         /// txtRepsName control.
         /// </summary>
         /// <remarks>
@@ -85,40 +76,103 @@ namespace IGBrandRepReferral {
         protected global::Telerik.Web.UI.RadDropDownList ddlHowHear;
         
         /// <summary>
-        /// RadTextBox1 control.
+        /// txtInstagramUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox RadTextBox1;
+        protected global::Telerik.Web.UI.RadTextBox txtInstagramUsername;
         
         /// <summary>
-        /// RadTextBox2 control.
+        /// dpBirthdayBegin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox RadTextBox2;
+        protected global::Telerik.Web.UI.RadDatePicker dpBirthdayBegin;
         
         /// <summary>
-        /// RadTextBox3 control.
+        /// dpBirthdayEnd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox RadTextBox3;
+        protected global::Telerik.Web.UI.RadDatePicker dpBirthdayEnd;
         
         /// <summary>
-        /// RadDropDownList1 control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList RadDropDownList1;
+        protected global::Telerik.Web.UI.RadTextBox txtEmail;
+        
+        /// <summary>
+        /// ddHasSmallShop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList ddHasSmallShop;
+        
+        /// <summary>
+        /// txtShopName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox txtShopName;
+        
+        /// <summary>
+        /// txtPayPalInvoiceNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox txtPayPalInvoiceNumber;
+        
+        /// <summary>
+        /// txtPayPalEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox txtPayPalEmail;
+        
+        /// <summary>
+        /// dpRequestBegin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDatePicker dpRequestBegin;
+        
+        /// <summary>
+        /// dpRequestEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDatePicker dpRequestEnd;
+        
+        /// <summary>
+        /// ddHasPaid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList ddHasPaid;
         
         /// <summary>
         /// btnSearch control.

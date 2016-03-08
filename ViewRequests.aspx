@@ -19,7 +19,6 @@
                         {
                             'OK': function () {
                                 $("#confirmDialog").dialog("close");
-                                //_DialogConfirmed(); // MUST implement on local page
                             }
                         }
 
@@ -40,17 +39,13 @@
                         buttons:
                         {
                             'OK': function () {
-                                // $(this).dialog("close");
                                 $("#confirmDialog").dialog("close");
-
-                                // _DialogConfirmed(); // MUST implement on local page
                             }
                         }
 
                     });
 
             });
-            //Dialog('Error', content);
         }
     </script>
     <style type="text/css">
@@ -118,9 +113,6 @@
                             <asp:Table runat="server" HorizontalAlign="Center">
                                 <asp:TableRow>
                                     <asp:TableHeaderCell>
-                                        ID
-                                    </asp:TableHeaderCell>
-                                    <asp:TableHeaderCell>
                                         Rep's Name
                                     </asp:TableHeaderCell>
                                     <asp:TableHeaderCell>
@@ -129,12 +121,12 @@
                                     <asp:TableHeaderCell>
                                         How Did You Hear?
                                     </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>
+                                        Instagram Username
+                                    </asp:TableHeaderCell>
                                     <asp:TableHeaderCell></asp:TableHeaderCell>
                                 </asp:TableRow>
                                 <asp:TableRow>
-                                    <asp:TableCell>
-                                        <telerik:RadTextBox ID="txtID" runat="server"></telerik:RadTextBox>
-                                    </asp:TableCell>
                                     <asp:TableCell>
                                         <telerik:RadTextBox ID="txtRepsName" runat="server"></telerik:RadTextBox>
                                     </asp:TableCell>
@@ -142,42 +134,90 @@
                                         <telerik:RadTextBox ID="txtParentsName" runat="server"></telerik:RadTextBox>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <telerik:RadDropDownList ID="ddlHowHear" runat="server" AppendDataBoundItems="true">
-                                            <Items>
-                                                <telerik:DropDownListItem Value="0" Text="--Select--" />
-                                            </Items>
-                                        </telerik:RadDropDownList>
+                                        <telerik:RadDropDownList ID="ddlHowHear" runat="server"></telerik:RadDropDownList>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <telerik:RadTextBox ID="txtInstagramUsername" runat="server"></telerik:RadTextBox>
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow>
                                     <asp:TableHeaderCell>
-                                        Instagram Username
+                                        Rep's Birthday Range (Begin)
                                     </asp:TableHeaderCell>
                                     <asp:TableHeaderCell>
-                                        Rep's Age
+                                        Rep's Birthday Range (End)
                                     </asp:TableHeaderCell>
                                     <asp:TableHeaderCell>
-                                        PayPal Email
+                                        Email
                                     </asp:TableHeaderCell>
                                     <asp:TableHeaderCell>
-                                        Do you have a small shop?
+                                        Has Small Shop?
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>
+                                        Small Shop Name
                                     </asp:TableHeaderCell>
                                     <asp:TableHeaderCell></asp:TableHeaderCell>
                                 </asp:TableRow>
                                 <asp:TableRow>
                                     <asp:TableCell>
-                                        <telerik:RadTextBox ID="RadTextBox1" runat="server"></telerik:RadTextBox>
+                                        <telerik:RadDatePicker ID="dpBirthdayBegin" runat="server"></telerik:RadDatePicker>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <telerik:RadTextBox ID="RadTextBox2" runat="server"></telerik:RadTextBox>
+                                        <telerik:RadDatePicker ID="dpBirthdayEnd" runat="server"></telerik:RadDatePicker>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <telerik:RadTextBox ID="RadTextBox3" runat="server"></telerik:RadTextBox>
+                                        <telerik:RadTextBox ID="txtEmail" runat="server"></telerik:RadTextBox>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <telerik:RadDropDownList ID="RadDropDownList1" runat="server" AppendDataBoundItems="true">
+                                        <telerik:RadDropDownList ID="ddHasSmallShop" runat="server">
                                             <Items>
-                                                <telerik:DropDownListItem Value="0" Text="--Select--" />
+                                                <telerik:DropDownListItem Value="-1" Text="--Select--" />
+                                                <telerik:DropDownListItem Value="0" Text="No" />
+                                                <telerik:DropDownListItem Value="1" Text="Yes" />
+                                            </Items>
+                                        </telerik:RadDropDownList>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <telerik:RadTextBox ID="txtShopName" runat="server"></telerik:RadTextBox>
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableHeaderCell>
+                                        PayPal Invoice Number
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>
+                                        PayPal Email
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>
+                                        Request Date Range (Begin)
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>
+                                        Request Date Range (End)
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell>
+                                        Has Paid?
+                                    </asp:TableHeaderCell>
+                                    <asp:TableHeaderCell></asp:TableHeaderCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableCell>
+                                        <telerik:RadTextBox ID="txtPayPalInvoiceNumber" runat="server"></telerik:RadTextBox>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <telerik:RadTextBox ID="txtPayPalEmail" runat="server"></telerik:RadTextBox>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <telerik:RadDatePicker ID="dpRequestBegin" runat="server"></telerik:RadDatePicker>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <telerik:RadDatePicker ID="dpRequestEnd" runat="server"></telerik:RadDatePicker>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <telerik:RadDropDownList ID="ddHasPaid" runat="server">
+                                            <Items>
+                                                <telerik:DropDownListItem Value="-1" Text="--Select--" />
+                                                <telerik:DropDownListItem Value="0" Text="No" />
+                                                <telerik:DropDownListItem Value="1" Text="Yes" />
                                             </Items>
                                         </telerik:RadDropDownList>
                                     </asp:TableCell>
@@ -196,13 +236,20 @@
                 <telerik:RadGrid ID="RadGrid1" runat="server" AutoGenerateColumns="false" OnNeedDataSource="RadGrid1_NeedDataSource" OnItemDataBound="RadGrid1_ItemDataBound">
                     <MasterTableView DataKeyNames="RequestID, AttachmentExists">
                         <Columns>
-                            <telerik:GridBoundColumn HeaderText="First Name" DataField="FirstName" UniqueName="FirstName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Last Name" DataField="LastName" UniqueName="LastName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Phone Number" DataField="PhoneNumber" UniqueName="PhoneNumber"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="E-Mail" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Company Name" DataField="CompanyName" UniqueName="CompanyName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Company URL" DataField="CompanyURL" UniqueName="CompanyURL"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Demos" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="FirstName" UniqueName="FirstName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="LastName" UniqueName="LastName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Email" DataField="PhoneNumber" UniqueName="PhoneNumber"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Instagram Username" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="CompanyName" UniqueName="CompanyName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="PayPal Email" DataField="CompanyURL" UniqueName="CompanyURL"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Rep's Bio/Resume" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Has a Small Shop" DataField="CompanyURL" UniqueName="CompanyURL"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Small Shop Name" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="How Did You Hear?" DataField="CompanyURL" UniqueName="CompanyURL"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="What Do You Want?" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Has Paid?" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="PayPal Invoice Number" DataField="CompanyURL" UniqueName="CompanyURL"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Request Date" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
                             <telerik:GridTemplateColumn HeaderText="Attachments">
                                 <ItemTemplate>
                                     <telerik:RadButton ID="btnDownloadAttachment" runat="server" Text="View Attachments" OnClick="btnDownloadAttachment_Click"></telerik:RadButton>
@@ -211,12 +258,8 @@
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
-
                 <telerik:RadWindow runat="server" ID="RadWindow1" Width="1080" Height="800" Modal="true"></telerik:RadWindow>
             </ContentTemplate>
-            <%--<Triggers>
-                <asp:PostBackTrigger ControlID="btnDownloadAttachment" />
-            </Triggers>--%>
         </asp:UpdatePanel>
     </fieldset>
 

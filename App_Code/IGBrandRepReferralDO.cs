@@ -116,17 +116,26 @@ namespace IGBrandRepReferral.App_Code
             return id;
         }
 
-        public static DataTable SearchRequests(string firstName, string lastName, string companyName, int demoID)
+        public static DataTable SearchRequests(string RepsName, string ParentsName, int HowHear, string InstagramUsername, string RepsBirthdayBegin, string RepsBirthdayEnd, string Email, string HasSmallShop, string PayPalInvoiceNumber, string PayPalEmail, string RequestDateRangeBegin, string RequestDateRangeEnd, string HasPaid)
         {
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("[dbo].[SearchRequests]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@FirstName", firstName);
-                cmd.Parameters.AddWithValue("@LastName", lastName);
-                cmd.Parameters.AddWithValue("@CompanyName", companyName);
-                cmd.Parameters.AddWithValue("@DemoID", demoID);
+                cmd.Parameters.AddWithValue("@RepsName", RepsName);
+                cmd.Parameters.AddWithValue("@ParentsName", ParentsName);
+                cmd.Parameters.AddWithValue("@HowHear", HowHear);
+                cmd.Parameters.AddWithValue("@InstagramUsername", InstagramUsername);
+                cmd.Parameters.AddWithValue("@RepsBirthdayBegin", RepsBirthdayBegin);
+                cmd.Parameters.AddWithValue("@RepsBirthdayEnd", RepsBirthdayEnd);
+                cmd.Parameters.AddWithValue("@Email", Email);
+                cmd.Parameters.AddWithValue("@HasSmallShop", HasSmallShop);
+                cmd.Parameters.AddWithValue("@PayPalInvoiceNumber", PayPalInvoiceNumber);
+                cmd.Parameters.AddWithValue("@PayPalEmail", PayPalEmail);
+                cmd.Parameters.AddWithValue("@RequestDateRangeBegin", RequestDateRangeBegin);
+                cmd.Parameters.AddWithValue("@RequestDateRangeEnd", RequestDateRangeEnd);
+                cmd.Parameters.AddWithValue("@HasPaid", HasPaid);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 

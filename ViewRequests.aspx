@@ -169,13 +169,7 @@
                                         <telerik:RadTextBox ID="txtEmail" runat="server"></telerik:RadTextBox>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <telerik:RadDropDownList ID="ddHasSmallShop" runat="server">
-                                            <Items>
-                                                <telerik:DropDownListItem Value="-1" Text="--Select--" />
-                                                <telerik:DropDownListItem Value="0" Text="No" />
-                                                <telerik:DropDownListItem Value="1" Text="Yes" />
-                                            </Items>
-                                        </telerik:RadDropDownList>
+                                        <telerik:RadDropDownList ID="ddHasSmallShop" runat="server"></telerik:RadDropDownList>
                                     </asp:TableCell>
                                     <asp:TableCell>
                                         <telerik:RadTextBox ID="txtShopName" runat="server"></telerik:RadTextBox>
@@ -213,13 +207,7 @@
                                         <telerik:RadDatePicker ID="dpRequestEnd" runat="server"></telerik:RadDatePicker>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <telerik:RadDropDownList ID="ddHasPaid" runat="server">
-                                            <Items>
-                                                <telerik:DropDownListItem Value="-1" Text="--Select--" />
-                                                <telerik:DropDownListItem Value="0" Text="No" />
-                                                <telerik:DropDownListItem Value="1" Text="Yes" />
-                                            </Items>
-                                        </telerik:RadDropDownList>
+                                        <telerik:RadDropDownList ID="ddHasPaid" runat="server"></telerik:RadDropDownList>
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow>
@@ -233,23 +221,34 @@
                     </asp:TableRow>
                 </asp:Table>
 
-                <telerik:RadGrid ID="RadGrid1" runat="server" AutoGenerateColumns="false" OnNeedDataSource="RadGrid1_NeedDataSource" OnItemDataBound="RadGrid1_ItemDataBound">
-                    <MasterTableView DataKeyNames="RequestID, AttachmentExists">
+                <telerik:RadGrid ID="RadGrid1" OnPageSizeChanged="RadGrid1_PageSizeChanged" OnPageIndexChanged="RadGrid1_PageIndexChanged" AllowPaging="True" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="RadGrid1_NeedDataSource" OnItemDataBound="RadGrid1_ItemDataBound">
+                        <PagerStyle Mode="NextPrevAndNumeric" AlwaysVisible="true" Position="Bottom" PageSizeControlType="RadComboBox"></PagerStyle>
+                    <MasterTableView DataKeyNames="ID, HasPaid, AttachmentExists" PagerStyle-AlwaysVisible="true">
                         <Columns>
-                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="FirstName" UniqueName="FirstName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="LastName" UniqueName="LastName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Email" DataField="PhoneNumber" UniqueName="PhoneNumber"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Instagram Username" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="CompanyName" UniqueName="CompanyName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="PayPal Email" DataField="CompanyURL" UniqueName="CompanyURL"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Rep's Bio/Resume" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Has a Small Shop" DataField="CompanyURL" UniqueName="CompanyURL"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Small Shop Name" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="How Did You Hear?" DataField="CompanyURL" UniqueName="CompanyURL"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="What Do You Want?" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Has Paid?" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="PayPal Invoice Number" DataField="CompanyURL" UniqueName="CompanyURL"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn HeaderText="Request Date" DataField="DemoName" UniqueName="DemoName"></telerik:GridBoundColumn>
+                            <telerik:GridEditCommandColumn UniqueName="EditCommandColumn" HeaderText="Click to Edit">
+                                <ItemStyle Width="50px"></ItemStyle>
+                            </telerik:GridEditCommandColumn>                            
+                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Instagram Username" DataField="InstagramUsername" UniqueName="InstagramUsername"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="PayPal Email" DataField="PayPalEmail" UniqueName="PayPalEmail"></telerik:GridBoundColumn>
+                            <telerik:GridHTMLEditorColumn HeaderText="Rep's Bio/Resume" DataField="RepsBioResume" UniqueName="RepsBioResume"></telerik:GridHTMLEditorColumn>
+                            <telerik:GridBoundColumn HeaderText="Have Small Shop?" DataField="HaveSmallShop" UniqueName="HaveSmallShop"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Small Shop Name" DataField="SmallShopUsername" UniqueName="SmallShopUsername"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="How Did You Hear?" DataField="HowHearDesc" UniqueName="HowHearDesc"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="What Do You Want?" DataField="WhatDoYouWant" UniqueName="WhatDoYouWant"></telerik:GridBoundColumn>
+                            <telerik:GridTemplateColumn HeaderText="Has Paid?" ItemStyle-Width="240px" DataField="HasPaid" UniqueName="HasPaid">
+                                <ItemTemplate> 
+                                    <%# Eval("HasPaid").ToString()=="False"?"No":"Yes" %>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <telerik:RadDropDownList runat="server" ID="ddlRadGridHasPaid"></telerik:RadDropDownList>
+                                </EditItemTemplate>
+                            </telerik:GridTemplateColumn>                            
+                            <telerik:GridBoundColumn HeaderText="PayPal Invoice Number" DataField="PayPalInvoiceNumber" UniqueName="PayPalInvoiceNumber"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn HeaderText="Request Date" DataField="RequestDate" UniqueName="RequestDate"></telerik:GridBoundColumn>
                             <telerik:GridTemplateColumn HeaderText="Attachments">
                                 <ItemTemplate>
                                     <telerik:RadButton ID="btnDownloadAttachment" runat="server" Text="View Attachments" OnClick="btnDownloadAttachment_Click"></telerik:RadButton>

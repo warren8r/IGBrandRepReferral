@@ -30,6 +30,27 @@ namespace IGBrandRepReferral.App_Code
             return dt;
         }
 
+        public static DataTable GetAllBooleanList()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("[dbo].[GetAllBooleanList]", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                try
+                {
+                    da.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            return dt;
+        }
+
         public static int InsertUpdateFeatureRequest(int ID, string RepsName, string ParentsName, string Email, string InstagramUsername, string RepsBirthday, string PayPalEmail, string RepsBioResume, bool HaveSmallShop, string SmallShopUsername, int HowHear, string WhatDoYouWant)
         {
             int id = 0;
@@ -116,7 +137,7 @@ namespace IGBrandRepReferral.App_Code
             return id;
         }
 
-        public static DataTable SearchRequests(string RepsName, string ParentsName, int HowHear, string InstagramUsername, string RepsBirthdayBegin, string RepsBirthdayEnd, string Email, string HasSmallShop, string PayPalInvoiceNumber, string PayPalEmail, string RequestDateRangeBegin, string RequestDateRangeEnd, string HasPaid)
+        public static DataTable SearchRequests(string RepsName, string ParentsName, int HowHear, string InstagramUsername, string RepsBirthdayBegin, string RepsBirthdayEnd, string Email, string HasSmallShop, string SmallShopName, string PayPalInvoiceNumber, string PayPalEmail, string RequestDateRangeBegin, string RequestDateRangeEnd, int HasPaid)
         {
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
@@ -131,6 +152,7 @@ namespace IGBrandRepReferral.App_Code
                 cmd.Parameters.AddWithValue("@RepsBirthdayEnd", RepsBirthdayEnd);
                 cmd.Parameters.AddWithValue("@Email", Email);
                 cmd.Parameters.AddWithValue("@HasSmallShop", HasSmallShop);
+                cmd.Parameters.AddWithValue("@SmallShopName", SmallShopName);
                 cmd.Parameters.AddWithValue("@PayPalInvoiceNumber", PayPalInvoiceNumber);
                 cmd.Parameters.AddWithValue("@PayPalEmail", PayPalEmail);
                 cmd.Parameters.AddWithValue("@RequestDateRangeBegin", RequestDateRangeBegin);

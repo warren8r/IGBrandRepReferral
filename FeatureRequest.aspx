@@ -50,30 +50,10 @@
                 updateProgress.style.display = "block";
                 return true;
             }
-            //alert('here I am');
-            //var email = ValidateEmail();
-            //if (email) {
-            //    var updateProgress = $get("<%= loader.ClientID %>");
-            //    updateProgress.style.display = "block";
-            //    return true;
-            //}
-            //else {
-            //    return false;
-           // }
+            else if (document.getElementById('<%=cbHowHear.ClientID%>').value == '--Select--') {
+                document.getElementById('<%=cbHowHear.ClientID%>').style.border = '1px solid red';
+            }
         }
-
-        //function ValidateEmail() {
-            //alert('here I am next1');
-            //var textbox = $find('<%= txtEmail.ClientID %>');
-            //var email = textbox.get_textBoxValue();
-            //alert('here I am next2');
-            //if (Page_ClientValidate()) {
-               // return true;
-            //}
-            //else {
-               // return false;
-            //}
-        //}
 
         function ValidatorUpdateDisplay(val) {
             if (typeof (val.display) == "string") {
@@ -361,7 +341,15 @@
                                     <asp:TableRow Height="25px">
                                         <asp:TableCell>
                                         </asp:TableCell>
-                                    </asp:TableRow>
+                                   </asp:TableRow>
+                                </asp:Table>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                    <asp:Table ID="Table5" runat="server" HorizontalAlign="Center">
+                        <asp:TableRow>
+                            <asp:TableCell>
+                                <asp:Table ID="Table6" runat="server" HorizontalAlign="Center" Width="15%">
                                    <asp:TableRow>
                                         <asp:TableHeaderCell>
                                             Rep's Bio/Resume<font color="red">*</font>
@@ -370,13 +358,21 @@
                                    </asp:TableRow>
                                    <asp:TableRow>
                                         <asp:TableCell>
-                                            <telerik:RadTextBox ID="txtRepsBioResume" runat="server" Width="100%" TextMode="MultiLine" Height="100px"></telerik:RadTextBox>
+                                                 <telerik:RadTextBox ID="txtRepsBioResume" runat="server" Width="672px" TextMode="MultiLine" Height="400px"></telerik:RadTextBox> 
                                         </asp:TableCell>
                                    </asp:TableRow>
                                     <asp:TableRow Height="25px">
                                         <asp:TableCell>
                                         </asp:TableCell>
                                     </asp:TableRow>
+                                </asp:Table>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                    <asp:Table ID="Table7" runat="server" HorizontalAlign="Center">
+                        <asp:TableRow>
+                            <asp:TableCell>
+                                <asp:Table ID="Table8" runat="server" HorizontalAlign="Center" Width="35%">
                                    <asp:TableRow>
                                         <asp:TableHeaderCell>
                                             Do You Have a Small Shop?

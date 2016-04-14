@@ -47,6 +47,21 @@
 
             });
         }
+        function ShowViewRequests() {
+            document.getElementById('viewrequests').style.display = 'block';
+            var ShowViewRequests = document.getElementById('<%=ShowViewRequests.ClientID%>');
+            var HideViewRequests = document.getElementById('<%=HideViewRequests.ClientID%>');
+            ShowViewRequests.style.display = 'none';
+            HideViewRequests.style.display = 'block';
+            HideViewRequests.focus();
+        }
+        function HideViewRequests() {
+            document.getElementById('viewrequests').style.display = 'none';
+            var ShowViewRequests = document.getElementById('<%=ShowViewRequests.ClientID%>');
+            var HideViewRequests = document.getElementById('<%=HideViewRequests.ClientID%>');
+            ShowViewRequests.style.display = 'block';
+            HideViewRequests.style.display = 'none';
+        }
     </script>
     <style type="text/css">
         body
@@ -97,208 +112,219 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
     <fieldset>
-        <table style="width:100%">
-            <tr>
-                <td style="width:100%">
-                    <h2 align="center">IG Brand Rep Referral Dashboard for today, <asp:label id="TodaysDate" runat="server" /></h2>
-                </td>
-            </tr>
-        </table>
-        <hr />
-        <table style="width:100%">
-            <tr>
-                <td style="width:35%">
-                    <h4 align="center">This Week's Birthdays!</h4>
-                </td>
-                <td style="width:35%">
-                    <h4 align="center">Number of Features Requested Per Day (for the last 7 days)</h4>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 35%">
-                    <table style="width:100%">
-                        <tr>
-                            <td><font size="2" color="turquoise">Birthdays for <asp:label id="Today" runat="server" /></font></td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <telerik:RadGrid ID="TodaysBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="TodaysBirthdayGrid_NeedDataSource">
-                                <MasterTableView DataKeyNames="ID">
-                                    <Columns>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><font size="2" color="turquoise">Birthdays for <asp:label id="Tomorrow" runat="server" /></font></td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <telerik:RadGrid ID="TomorrowsBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="TomorrowsBirthdayGrid_NeedDataSource">
-                                <MasterTableView DataKeyNames="ID">
-                                    <Columns>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day3" runat="server" /></font></td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <telerik:RadGrid ID="Day3sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day3sBirthdayGrid_NeedDataSource">
-                                <MasterTableView DataKeyNames="ID">
-                                    <Columns>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day4" runat="server" /></font></td>
-                         </tr>
-                        <tr>
-                            <td>
-                            <telerik:RadGrid ID="Day4sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day4sBirthdayGrid_NeedDataSource">
-                                <MasterTableView DataKeyNames="ID">
-                                    <Columns>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day5" runat="server" /></font></td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <telerik:RadGrid ID="Day5sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day5sBirthdayGrid_NeedDataSource">
-                                <MasterTableView DataKeyNames="ID">
-                                    <Columns>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day6" runat="server" /></font></td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <telerik:RadGrid ID="Day6sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day6sBirthdayGrid_NeedDataSource">
-                                <MasterTableView DataKeyNames="ID">
-                                    <Columns>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day7" runat="server" /></font></td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <telerik:RadGrid ID="Day7sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day7sBirthdayGrid_NeedDataSource">
-                                <MasterTableView DataKeyNames="ID">
-                                    <Columns>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><font size="2" color="turquoise">Birthdays for <asp:label id="EndOfWeek" runat="server" /></font></td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <telerik:RadGrid ID="EndOfWeeksBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="EndOfWeeksBirthdayGrid_NeedDataSource">
-                                <MasterTableView DataKeyNames="ID">
-                                    <Columns>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td style="width: 35%">
-                    <telerik:RadHtmlChart runat="server" ID="RadHtmlChart1" DataSourceID="SqlDataSource2" >
-                        <PlotArea>
-                            <Series>
-                                <telerik:BarSeries Name="NumberOfFeatures" DataFieldY="TotalFeatures" >
-                                    <TooltipsAppearance Color="White"></TooltipsAppearance>
-                                    <LabelsAppearance Visible="true">
-                                    </LabelsAppearance>
-                                </telerik:BarSeries>
-                            </Series>
-                            <XAxis DataLabelsField="DayName">
-                                <MinorGridLines Visible="false"></MinorGridLines>
-                                <MajorGridLines Visible="false"></MajorGridLines>
-                            </XAxis>
-                            <YAxis Step="1">
-                                <LabelsAppearance Visible="true"></LabelsAppearance>
-                                <MinorGridLines Visible="false"></MinorGridLines>
-                            </YAxis>
-                        </PlotArea>
-                        <Legend>
-                            <Appearance Visible="false"></Appearance>
-                        </Legend>
-                    </telerik:RadHtmlChart>                
-                    <br />
-                    <font size="4" color="turquoise">Remaining Requests for the Week: <asp:label id="RemainingRequests" runat="server" /></font>
-                </td> 
-                <td style="width: 30%">
-                </td> 
-            </tr>
-        </table>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Connection %>"
-                SelectCommand="SELECT COUNT([ID]) AS [TotalFeatures], CAST(DATENAME(dw, [CreatedDate]) AS NVARCHAR(150)) + ', ' + CONVERT(NVARCHAR(150), CAST([CreatedDate] as DATE), 101) AS DayName FROM [dbo].[FeatureRequest] WHERE [CreatedDate] >=dateadd(day,datediff(day,0,GetDate())- 7,0) GROUP BY DATENAME(dw, [CreatedDate]), CONVERT(DATE, [CreatedDate]) ORDER BY CONVERT(DATE, [CreatedDate]) DESC">
-        </asp:SqlDataSource>
-        <hr />
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+            <div id="dashboard">
+            <table style="width:100%">
+                <tr>
+                    <td style="width:100%">
+                        <h2 align="center">IG Brand Rep Referral Dashboard for today, <asp:label id="TodaysDate" runat="server" /></h2>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+            <table style="width:100%">
+                <tr>
+                    <td style="width:35%" alignt="center">
+                        <h4 align="center">This Week's Birthdays!</h4>
+                    </td>
+                    <td style="width:15%">
+                    </td>
+                    <td style="width:35%" align="center">
+                        <h4 align="center">Number of Features Requested Per Day (for the last 7 days)</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 35%">
+                        <table style="width:100%">
+                            <tr>
+                                <td><font size="2" color="turquoise">Birthdays for <asp:label id="Today" runat="server" /></font></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <telerik:RadGrid ID="TodaysBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="TodaysBirthdayGrid_NeedDataSource">
+                                    <MasterTableView DataKeyNames="ID">
+                                        <Columns>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
+                                        </Columns>
+                                    </MasterTableView>
+                                </telerik:RadGrid>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><font size="2" color="turquoise">Birthdays for <asp:label id="Tomorrow" runat="server" /></font></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <telerik:RadGrid ID="TomorrowsBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="TomorrowsBirthdayGrid_NeedDataSource">
+                                    <MasterTableView DataKeyNames="ID">
+                                        <Columns>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
+                                        </Columns>
+                                    </MasterTableView>
+                                </telerik:RadGrid>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day3" runat="server" /></font></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <telerik:RadGrid ID="Day3sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day3sBirthdayGrid_NeedDataSource">
+                                    <MasterTableView DataKeyNames="ID">
+                                        <Columns>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
+                                        </Columns>
+                                    </MasterTableView>
+                                </telerik:RadGrid>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day4" runat="server" /></font></td>
+                             </tr>
+                            <tr>
+                                <td>
+                                <telerik:RadGrid ID="Day4sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day4sBirthdayGrid_NeedDataSource">
+                                    <MasterTableView DataKeyNames="ID">
+                                        <Columns>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
+                                        </Columns>
+                                    </MasterTableView>
+                                </telerik:RadGrid>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day5" runat="server" /></font></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <telerik:RadGrid ID="Day5sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day5sBirthdayGrid_NeedDataSource">
+                                    <MasterTableView DataKeyNames="ID">
+                                        <Columns>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
+                                        </Columns>
+                                    </MasterTableView>
+                                </telerik:RadGrid>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day6" runat="server" /></font></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <telerik:RadGrid ID="Day6sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day6sBirthdayGrid_NeedDataSource">
+                                    <MasterTableView DataKeyNames="ID">
+                                        <Columns>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
+                                        </Columns>
+                                    </MasterTableView>
+                                </telerik:RadGrid>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><font size="2" color="turquoise">Birthdays for <asp:label id="Day7" runat="server" /></font></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <telerik:RadGrid ID="Day7sBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="Day7sBirthdayGrid_NeedDataSource">
+                                    <MasterTableView DataKeyNames="ID">
+                                        <Columns>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
+                                        </Columns>
+                                    </MasterTableView>
+                                </telerik:RadGrid>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><font size="2" color="turquoise">Birthdays for <asp:label id="EndOfWeek" runat="server" /></font></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <telerik:RadGrid ID="EndOfWeeksBirthdayGrid" AllowFilteringByColumn="false" AllowSorting="true" runat="server" AutoGenerateColumns="false" OnNeedDataSource="EndOfWeeksBirthdayGrid_NeedDataSource">
+                                    <MasterTableView DataKeyNames="ID">
+                                        <Columns>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Name" DataField="RepsName" UniqueName="RepsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Parent's Name" DataField="ParentsName" UniqueName="ParentsName"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Email" DataField="Email" UniqueName="Email"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Rep's Birthday" DataField="RepsBirthday" UniqueName="RepsBirthday" DataFormatString="{0:MM/dd/yyyy}"></telerik:GridBoundColumn>
+                                            <telerik:GridBoundColumn HeaderText="Future Age" DataField="Age" UniqueName="Age"></telerik:GridBoundColumn>
+                                        </Columns>
+                                    </MasterTableView>
+                                </telerik:RadGrid>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width:15%">
+                    </td>
+                    <td style="width: 35%" align="center">
+                        <telerik:RadHtmlChart runat="server" ID="RadHtmlChart1" DataSourceID="SqlDataSource2" >
+                            <PlotArea>
+                                <Series>
+                                    <telerik:BarSeries Name="NumberOfFeatures" DataFieldY="TotalFeatures" >
+                                        <TooltipsAppearance Color="White"></TooltipsAppearance>
+                                        <LabelsAppearance Visible="true">
+                                        </LabelsAppearance>
+                                    </telerik:BarSeries>
+                                </Series>
+                                <XAxis DataLabelsField="DayName">
+                                    <MinorGridLines Visible="false"></MinorGridLines>
+                                    <MajorGridLines Visible="false"></MajorGridLines>
+                                </XAxis>
+                                <YAxis Step="1">
+                                    <LabelsAppearance Visible="true"></LabelsAppearance>
+                                    <MinorGridLines Visible="false"></MinorGridLines>
+                                </YAxis>
+                            </PlotArea>
+                            <Legend>
+                                <Appearance Visible="false"></Appearance>
+                            </Legend>
+                        </telerik:RadHtmlChart>                
+                        <br />
+                        <font size="4" color="turquoise">Remaining Requests for the Week: <asp:label id="RemainingRequests" runat="server" /></font>
+                    </td> 
+                    <td style="width: 30%">
+                    </td> 
+                </tr>
+            </table>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Connection %>"
+                    SelectCommand="SELECT COUNT([ID]) AS [TotalFeatures], CAST(DATENAME(dw, [CreatedDate]) AS NVARCHAR(150)) + ', ' + CONVERT(NVARCHAR(150), CAST([CreatedDate] as DATE), 101) AS DayName FROM [dbo].[FeatureRequest] WHERE [CreatedDate] >=dateadd(day,datediff(day,0,GetDate())- 7,0) GROUP BY DATENAME(dw, [CreatedDate]), CONVERT(DATE, [CreatedDate]) ORDER BY CONVERT(DATE, [CreatedDate]) DESC">
+            </asp:SqlDataSource>
+            </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
+            <div id="viewrequests" style="display:none">
+                <hr />
                 <asp:Table ID="MainPage" runat="server" HorizontalAlign="Center" Width="100%">
                     <asp:TableRow>
                         <asp:TableCell HorizontalAlign="Center">
@@ -473,8 +499,17 @@
                     </MasterTableView>
                 </telerik:RadGrid>
                 <telerik:RadWindow runat="server" ID="RadWindow1" Width="1080" Height="800" Modal="true"></telerik:RadWindow>
+                </div>
             </ContentTemplate>
         </asp:UpdatePanel>
+                <asp:Table ID="Table1" runat="server" HorizontalAlign="Center">
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <telerik:RadButton ID="ShowViewRequests" runat="server" Text="Show Requests" OnClientClicked="ShowViewRequests" AutoPostBack="false"></telerik:RadButton>
+                            <telerik:RadButton ID="HideViewRequests" runat="server" Text="Hide Requests" OnClientClicked="HideViewRequests" AutoPostBack="false" style="display:none"></telerik:RadButton>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                </asp:Table>
     </fieldset>
 
 </asp:Content>

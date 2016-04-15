@@ -16,6 +16,7 @@ namespace IGBrandRepReferral
         {
             if (!IsPostBack)
             {
+                HideViewRequestsCB();
                 BindGrids();
                 BindDays();
                 RemainingRequests.Text = Convert.ToString(App_Code.IGBrandRepReferralDO.GetRemainingRequests());
@@ -166,10 +167,12 @@ namespace IGBrandRepReferral
         {
             RadGrid1.DataSource = Search();
             RadGrid1.DataBind();
+            ShowViewRequestsCB();
         }
         protected void btnClear_Click(object sender, EventArgs e)
         {
             ClearFields();
+            HideViewRequests.Focus();
         }
         protected void btnDownloadAttachment_Click(object sender, EventArgs e)
         {
@@ -182,8 +185,30 @@ namespace IGBrandRepReferral
             string script = "function f(){$find(\"" + RadWindow1.ClientID + "\").show(); Sys.Application.remove_load(f);}Sys.Application.add_load(f);";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key", script, true);
         }
+
+        protected void ShowViewRequests_Click(object sender, EventArgs e)
+        {
+            ShowViewRequestsCB();
+        }
+        protected void HideViewRequests_Click(object sender, EventArgs e)
+        {
+            HideViewRequestsCB();
+        }
         #endregion
         #region Utility Methods
+        protected void ShowViewRequestsCB()
+        {
+            viewrequests.Style["display"] = "block";
+            ShowViewRequests.Style["display"] = "none";
+            HideViewRequests.Style["display"] = "block";
+            HideViewRequests.Focus();
+        }
+        protected void HideViewRequestsCB()
+        {
+            viewrequests.Style["display"] = "none";
+            ShowViewRequests.Style["display"] = "block";
+            HideViewRequests.Style["display"] = "none";
+        }
         protected DataTable Search()
         {
             DataTable dt = new DataTable();

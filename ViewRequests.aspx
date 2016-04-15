@@ -47,21 +47,6 @@
 
             });
         }
-        function ShowViewRequests() {
-            document.getElementById('viewrequests').style.display = 'block';
-            var ShowViewRequests = document.getElementById('<%=ShowViewRequests.ClientID%>');
-            var HideViewRequests = document.getElementById('<%=HideViewRequests.ClientID%>');
-            ShowViewRequests.style.display = 'none';
-            HideViewRequests.style.display = 'block';
-            HideViewRequests.focus();
-        }
-        function HideViewRequests() {
-            document.getElementById('viewrequests').style.display = 'none';
-            var ShowViewRequests = document.getElementById('<%=ShowViewRequests.ClientID%>');
-            var HideViewRequests = document.getElementById('<%=HideViewRequests.ClientID%>');
-            ShowViewRequests.style.display = 'block';
-            HideViewRequests.style.display = 'none';
-        }
     </script>
     <style type="text/css">
         body
@@ -323,7 +308,7 @@
         </asp:UpdatePanel>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-            <div id="viewrequests" style="display:none">
+            <div id="viewrequests" runat="server" style="display: none">
                 <hr />
                 <asp:Table ID="MainPage" runat="server" HorizontalAlign="Center" Width="100%">
                     <asp:TableRow>
@@ -500,16 +485,16 @@
                 </telerik:RadGrid>
                 <telerik:RadWindow runat="server" ID="RadWindow1" Width="1080" Height="800" Modal="true"></telerik:RadWindow>
                 </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
                 <asp:Table ID="Table1" runat="server" HorizontalAlign="Center">
                     <asp:TableRow>
                         <asp:TableCell>
-                            <telerik:RadButton ID="ShowViewRequests" runat="server" Text="Show Requests" OnClientClicked="ShowViewRequests" AutoPostBack="false"></telerik:RadButton>
-                            <telerik:RadButton ID="HideViewRequests" runat="server" Text="Hide Requests" OnClientClicked="HideViewRequests" AutoPostBack="false" style="display:none"></telerik:RadButton>
+                            <telerik:RadButton ID="ShowViewRequests" runat="server" Text="Show Requests" OnClick="ShowViewRequests_Click"></telerik:RadButton>
+                            <telerik:RadButton ID="HideViewRequests" runat="server" Text="Hide Requests" OnClick="HideViewRequests_Click"></telerik:RadButton>
                         </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </fieldset>
 
 </asp:Content>

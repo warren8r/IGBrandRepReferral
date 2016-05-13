@@ -49,6 +49,24 @@ namespace IGBrandRepReferral {
         protected global::System.Web.UI.WebControls.Label TodaysDate;
         
         /// <summary>
+        /// BirthdayMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow BirthdayMessage;
+        
+        /// <summary>
+        /// TodayRow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow TodayRow;
+        
+        /// <summary>
         /// Today control.
         /// </summary>
         /// <remarks>
@@ -56,6 +74,15 @@ namespace IGBrandRepReferral {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Today;
+        
+        /// <summary>
+        /// TodayGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow TodayGrid;
         
         /// <summary>
         /// TodaysBirthdayGrid control.
@@ -67,6 +94,15 @@ namespace IGBrandRepReferral {
         protected global::Telerik.Web.UI.RadGrid TodaysBirthdayGrid;
         
         /// <summary>
+        /// TomorrowRow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow TomorrowRow;
+        
+        /// <summary>
         /// Tomorrow control.
         /// </summary>
         /// <remarks>
@@ -74,6 +110,15 @@ namespace IGBrandRepReferral {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Tomorrow;
+        
+        /// <summary>
+        /// TomorrowGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow TomorrowGrid;
         
         /// <summary>
         /// TomorrowsBirthdayGrid control.
@@ -85,6 +130,15 @@ namespace IGBrandRepReferral {
         protected global::Telerik.Web.UI.RadGrid TomorrowsBirthdayGrid;
         
         /// <summary>
+        /// Day3Row control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day3Row;
+        
+        /// <summary>
         /// Day3 control.
         /// </summary>
         /// <remarks>
@@ -92,6 +146,15 @@ namespace IGBrandRepReferral {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Day3;
+        
+        /// <summary>
+        /// Day3Grid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day3Grid;
         
         /// <summary>
         /// Day3sBirthdayGrid control.
@@ -103,6 +166,15 @@ namespace IGBrandRepReferral {
         protected global::Telerik.Web.UI.RadGrid Day3sBirthdayGrid;
         
         /// <summary>
+        /// Day4Row control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day4Row;
+        
+        /// <summary>
         /// Day4 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +182,15 @@ namespace IGBrandRepReferral {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Day4;
+        
+        /// <summary>
+        /// Day4Grid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day4Grid;
         
         /// <summary>
         /// Day4sBirthdayGrid control.
@@ -121,6 +202,15 @@ namespace IGBrandRepReferral {
         protected global::Telerik.Web.UI.RadGrid Day4sBirthdayGrid;
         
         /// <summary>
+        /// Day5Row control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day5Row;
+        
+        /// <summary>
         /// Day5 control.
         /// </summary>
         /// <remarks>
@@ -128,6 +218,15 @@ namespace IGBrandRepReferral {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Day5;
+        
+        /// <summary>
+        /// Day5Grid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day5Grid;
         
         /// <summary>
         /// Day5sBirthdayGrid control.
@@ -139,6 +238,15 @@ namespace IGBrandRepReferral {
         protected global::Telerik.Web.UI.RadGrid Day5sBirthdayGrid;
         
         /// <summary>
+        /// Day6Row control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day6Row;
+        
+        /// <summary>
         /// Day6 control.
         /// </summary>
         /// <remarks>
@@ -146,6 +254,15 @@ namespace IGBrandRepReferral {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Day6;
+        
+        /// <summary>
+        /// Day6Grid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day6Grid;
         
         /// <summary>
         /// Day6sBirthdayGrid control.
@@ -157,6 +274,15 @@ namespace IGBrandRepReferral {
         protected global::Telerik.Web.UI.RadGrid Day6sBirthdayGrid;
         
         /// <summary>
+        /// Day7Row control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day7Row;
+        
+        /// <summary>
         /// Day7 control.
         /// </summary>
         /// <remarks>
@@ -164,6 +290,15 @@ namespace IGBrandRepReferral {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Day7;
+        
+        /// <summary>
+        /// Day7Grid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Day7Grid;
         
         /// <summary>
         /// Day7sBirthdayGrid control.
@@ -175,6 +310,15 @@ namespace IGBrandRepReferral {
         protected global::Telerik.Web.UI.RadGrid Day7sBirthdayGrid;
         
         /// <summary>
+        /// EndOfWeekRow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow EndOfWeekRow;
+        
+        /// <summary>
         /// EndOfWeek control.
         /// </summary>
         /// <remarks>
@@ -182,6 +326,15 @@ namespace IGBrandRepReferral {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label EndOfWeek;
+        
+        /// <summary>
+        /// EndOfWeekGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow EndOfWeekGrid;
         
         /// <summary>
         /// EndOfWeeksBirthdayGrid control.

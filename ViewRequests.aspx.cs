@@ -17,10 +17,11 @@ namespace IGBrandRepReferral
             if (!IsPostBack)
             {
                 HideViewRequestsCB();
-                BindGrids();
-                BindDays();
-                RemainingRequests.Text = Convert.ToString(App_Code.IGBrandRepReferralDO.GetRemainingRequests());
             }
+            BindGrids();
+            BindBirthdays();
+            BindDays();
+            RemainingRequests.Text = Convert.ToString(App_Code.IGBrandRepReferralDO.GetRemainingRequests());
         }
         protected void RadGrid1_PageIndexChanged(object source, Telerik.Web.UI.GridPageChangedEventArgs e)
         {
@@ -280,6 +281,86 @@ namespace IGBrandRepReferral
             DataTable dt = new DataTable();
             dt = App_Code.IGBrandRepReferralDO.GetEndOfWeeksBirthdays();
             return dt;
+        }
+        protected void BindBirthdays()
+        {
+            int i = 0;
+            if (TodaysBirthdays() != null)
+            {
+                if (TodaysBirthdays().Rows.Count > 0)
+                {
+                    TodayRow.Attributes.Add("style", "display:block");
+                    TodayGrid.Attributes.Add("style", "display:block");
+                    i++;
+                }
+            }
+            if (TomorrowsBirthdays() != null)
+            {
+                if (TomorrowsBirthdays().Rows.Count > 0)
+                {
+                    TomorrowRow.Attributes.Add("style", "display:block");
+                    TomorrowGrid.Attributes.Add("style", "display:block");
+                    i++;
+                }
+            }
+            if (Day3sBirthdays() != null)
+            {
+                if (Day3sBirthdays().Rows.Count > 0)
+                {
+                    Day3Row.Attributes.Add("style", "display:block");
+                    Day3Grid.Attributes.Add("style", "display:block");
+                    i++;
+                }
+            }
+            if (Day4sBirthdays() != null)
+            {
+                if (Day4sBirthdays().Rows.Count > 0)
+                {
+                    Day4Row.Attributes.Add("style", "display:block");
+                    Day4Grid.Attributes.Add("style", "display:block");
+                    i++;
+                }
+            }
+            if (Day5sBirthdays() != null)
+            {
+                if (Day5sBirthdays().Rows.Count > 0)
+                {
+                    Day5Row.Attributes.Add("style", "display:block");
+                    Day5Grid.Attributes.Add("style", "display:block");
+                    i++;
+                }
+            }
+            if (Day6sBirthdays() != null)
+            {
+                if (Day6sBirthdays().Rows.Count > 0)
+                {
+                    Day6Row.Attributes.Add("style", "display:block");
+                    Day6Grid.Attributes.Add("style", "display:block");
+                    i++;
+                }
+            }
+            if (Day7sBirthdays() != null)
+            {
+                if (Day7sBirthdays().Rows.Count > 0)
+                {
+                    Day7Row.Attributes.Add("style", "display:block");
+                    Day7Grid.Attributes.Add("style", "display:block");
+                    i++;
+                }
+            }
+            if (EndOfWeeksBirthdays() != null)
+            {
+                if (EndOfWeeksBirthdays().Rows.Count > 0)
+                {
+                    EndOfWeekRow.Attributes.Add("style", "display:block");
+                    EndOfWeekGrid.Attributes.Add("style", "display:block");
+                    i++;
+                }
+            }
+            if (i < 1)
+            {
+                BirthdayMessage.Attributes.Add("style", "display:block");             
+            }
         }
         protected void BindGrids()
         {

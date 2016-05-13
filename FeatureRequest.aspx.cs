@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
+using System.Web.Services;
 
 namespace IGBrandRepReferral
 {
@@ -31,9 +32,22 @@ namespace IGBrandRepReferral
                 cbHowHear.DataValueField = "ID";
                 cbHowHear.DataSource = dt;
                 cbHowHear.DataBind();
-
-                dpRepsBirthday.MaxDate = DateTime.Now;
             }
+            dpRepsBirthday.MaxDate = DateTime.Now;
+        }
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
+
+            if (HttpContext.Current.Request.HttpMethod == "OPTIONS")
+            {
+                //These headers are handling the "pre-flight" OPTIONS call sent by the browser
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+                HttpContext.Current.Response.AddHeader("Access-Control-Max-Age", "1728000");
+                HttpContext.Current.Response.End();
+            }
+
         }
         #endregion
 
@@ -117,9 +131,10 @@ namespace IGBrandRepReferral
                     }
                     DateTime CurrentDateTime = DateTime.Now;
                     //Send email to Matt.Warren@fortechenergyinc.com
-                    string userName = "Angela Warren";
+                    //string userName = "Angela Warren";
                     string userEmail = "igbrandrepreferral@gmail.com";
-                    string userSubject = "[AutoFeature] Feature Request from " + InstagramUsername + " Rep's Name: " + RepsName + " (" + ParentsName + ")";
+                    //string userEmail = "edsptech@gmail.com";
+                    string userSubject = "[New IG Feature Request] Feature Request from " + InstagramUsername + " - Rep's Name: " + RepsName + " (Parent: " + ParentsName + ")";
                     string userEmailContent = BuildEmail(InstagramUsername, RepsName, RepsBirthday, ParentsName, Email, PayPalEmail, RepsBioResume, HaveSmallShop, SmallShopUsername, HowHear, WhatDoYouWant, IsAttachment, CurrentDateTime);
                     SendEmailViaNetMail(userEmail, userSubject, userEmailContent, true);
 
@@ -147,6 +162,7 @@ namespace IGBrandRepReferral
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "SaveProgram", script, true);
             }
         }
+        [WebMethod]
         protected void chkHaveSmallShop_CheckedChanged(object sender, EventArgs e)
         {
             if (chkHaveSmallShop.Checked == true)
@@ -182,6 +198,10 @@ namespace IGBrandRepReferral
             if (txtRepsName.Text == "" || txtParentsName.Text == "" || txtInstagramUsername.Text == "" || txtEmail.Text == ""
                 || dpRepsBirthday.SelectedDate == null || txtPayPalEmail.Text == "" || txtRepsBioResume.Text == "" || cbHowHear.SelectedIndex == 0)
             {
+                if (txtRepsName.Text == "" || txtParentsName.Text == "" || txtInstagramUsername.Text == "" || txtEmail.Text == "" || dpRepsBirthday.SelectedDate == null || txtPayPalEmail.Text == "" || txtRepsBioResume.Text == "")
+                    MainPage.Visible = false;
+                else
+                    MainPage.Visible = true;
                 return false;
             }
             else
@@ -256,122 +276,36 @@ namespace IGBrandRepReferral
             StringBuilder oStr = new StringBuilder("");
             try
             {
-                oStr.Append("<table>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Requestor's IG Handle:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='text-align:center; font-size: x-large; color: lightcoral;'><strong>IG Brand Rep Referral Request</strong></p><hr />");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Requestor's IG Handle:</strong></p>");
                 oStr.Append(InstagramUsername);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Rep's Name:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Rep's Name:</strong></p>");
                 oStr.Append(RepsName);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Rep's Age:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Rep's Age:</strong></p>");
                 oStr.Append(Age);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Rep's Birthday:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Rep's Birthday:</strong></p>");
                 oStr.Append(RepsBirthday);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Parent's Name:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Parent's Name:</strong></p>");
                 oStr.Append(ParentsName);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Requestor's Email:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Requestor's Email:</strong></p>");
                 oStr.Append(Email);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("PayPal Email:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>PayPal Email:</strong></p>");
                 oStr.Append(PayPalEmail);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Rep's Bio and Resume:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Rep's Bio and Resume:</strong></p>");
                 oStr.Append(RepsBioResume);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Does Requestor Have a Small Shop?:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Does Requestor Have a Small Shop?:</strong></p>");
                 oStr.Append(DoesHaveSmallShop);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Small Shop Username:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Small Shop Username:</strong></p>");
                 oStr.Append(SmallShopUsername);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("How Did You Hear About Us:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>How Did You Hear About Us:</strong></p>");
                 oStr.Append(HowDidYouHearAboutUs);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Please describe what you need/want from your Instagram brander community and how we can best support you:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Please describe what you need/want from your Instagram brander community and how we can best support you:</strong></p>");
                 oStr.Append(WhatDoYouWant);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Did You Upload An Attachment?:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Did You Upload An Attachment?:</strong></p>");
                 oStr.Append(HasUploadedAttachments);
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                oStr.Append("<tr>");
-                oStr.Append("<td>");
-                oStr.Append("Date and Time Request Submitted:");
-                oStr.Append("</td>");
-                oStr.Append("<td>");
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>Date and Time Request Submitted:</strong></p>");
                 oStr.Append(DateRequestMade.ToString());
-                oStr.Append("</td>");
-                oStr.Append("</tr>");
-                //oStr.Append("<tr><td colspan='2'>Sent from Fortech Timesheet Copyright(c)2015</td></tr>");
-                oStr.Append("</table>");
-
+                oStr.Append("<p style='color: lightcoral;font-size: x-large;'><strong>I love you, Beautiful!</strong></p>");
             }
 
             catch (Exception ex)
@@ -385,13 +319,13 @@ namespace IGBrandRepReferral
             StringBuilder oStr = new StringBuilder("");
             try
             {
-                oStr.Append("<p><span style='color: #33cccc;'><strong><span style='font-size: medium;'>IG Brand Rep Referral</span></strong></span></p><p>Hello "); 
+                oStr.Append("<p style='color: #33cccc;font-size: medium;'><strong>IG Brand Rep Referral</strong></p><p>Hello ");
                 oStr.Append(ParentsName);
-                oStr.Append(",</p><p>Thank you for signing ");
+                oStr.Append(",</p><p>Thank you for your interest in featuring ");
                 oStr.Append(RepsName);
-                oStr.Append(" up with IG Brand Rep Referral on ");
-                oStr.Append(DateRequestMade);
-                oStr.Append(" .</p><p>We look forward to serving your needs!</p><p>Much Thanks,</p><p>Angela</p><p>igbrandrepreferral@gmail.com</p>");
+                oStr.Append(" in the IG Brand Rep Referral community!</p>");
+                oStr.Append("<p>Once we verify that your account meets IG's terms of use, we will send an invoice through PayPal.</p><p>When pay-ment is received, your spot is secured!</p><p>We will be in touch within 24 hours and are excited for the opportunity to work with you!</p><p></p>");
+                oStr.Append("<p>Have an amazing day- we'll talk to you soon!</p><p></p><p>Angela</p><p>igbrandrepreferral@gmail.com</p>");
             }
 
             catch (Exception ex)

@@ -33,13 +33,6 @@
     <form id="form1" runat="server">
         <div>
             <asp:ScriptManager ID="ScriptManager1" runat="server" ScriptMode="Release"></asp:ScriptManager>
-
-            <%--  <telerik:RadScriptManager EnablePageMethods="true" runat="server" ID="RadScriptManager1" AsyncPostBackTimeout="10000"/>--%>
-            <%--<telerik:RadSkinManager ID="QsfSkinManager" runat="server" ShowChooser="true" />--%>
-
-            <%--<telerik:RadFormDecorator ID="QsfFromDecorator" runat="server" DecoratedControls="All"
-            EnableRoundedCorners="false" />--%>
-
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td align="center">
@@ -66,38 +59,23 @@
                                     </table>
                                 </td>
                             </tr>
-                            <tr style="display: none;">
-                                <td style="line-height: 10px"></td>
-                            </tr>
-                            <%--<tr>
-                                <td align="left" style="background-color: #597791">
-                                    <div class="qsf-demo-canvas">
-                                        <script type="text/javascript">
-                                            function onClicking(sender, eventArgs) {
-                                                var item = eventArgs.get_item();
-
-                                                if (item.get_level() == 0) {
-                                                    eventArgs.set_cancel(true);
-                                                }
-                                            }
-                                        </script>
-                                        <telerik:radmenu id="RadMenu1" width="100%" runat="server" enableroundedcorners="true" enableshadows="true"
-                                            onclientitemclicking="onClicking">
-                                        </telerik:radmenu>
-                                        <asp:Label ID="lbl_menu" runat="server"></asp:Label>
-                                    </div>
+                            <tr>
+                                <td>
+                                    <telerik:RadMenu RenderMode="Lightweight" ID="RadMenu1" runat="server" Flow="Horizontal" ShowToggleHandle="true">
+                                        <Items>
+                                            <telerik:RadMenuItem Text="Home" BackColor="#94bdc3" ForeColor="White" NavigateUrl="FeatureRequest.aspx" />
+                                            <telerik:RadMenuItem Text="About" BackColor="#94bdc3" ForeColor="White" NavigateUrl="FeatureRequest.aspx" />
+                                            <telerik:RadMenuItem Text="FAQs" BackColor="#94bdc3" ForeColor="White" NavigateUrl="FeatureRequest.aspx" />
+                                        </Items>
+                                    </telerik:RadMenu>
                                 </td>
-                            </tr>--%>
+                            </tr>
                         </table>
                     </td>
                 </tr>
             </table>
 
             <div id="main-container">
-                <div class="breadcrumbs">
-                    <%--<asp:SiteMapPath runat="server" ID="sitemap_path" PathSeparator=" &#187; " RenderCurrentNodeAsLink="false" ParentLevelsDisplayed="1" />--%>
-                </div>
-                <!-- //.breadcrumbs -->
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

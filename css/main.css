@@ -644,7 +644,7 @@ body {
 fieldset {
     margin: 1em 0px;
     padding: 1em;
-    border: 1px solid #ccc;
+    border: 0 none;
 }
 
     fieldset p {

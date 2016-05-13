@@ -161,6 +161,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="css\Animate.css" />
     <Content Include="css\main.css" />
+    <Content Include="Default.aspx" />
     <Content Include="Images\IGBrandRepReferralLogo.png" />
     <Content Include="Images\info_small.png" />
     <Content Include="Images\ripple.gif" />
@@ -199,7 +200,9 @@
     <Content Include="Styles\jquery-ui.min.css" />
     <Content Include="Styles\jquery-ui.theme.min.css" />
     <Content Include="ViewRequests.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\IGBrandRepReferralDO.cs" />
@@ -223,6 +226,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="FeatureRequest.aspx.cs">
       <DependentUpon>FeatureRequest.aspx</DependentUpon>
